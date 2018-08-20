@@ -55,7 +55,7 @@ public class CarMovePlayerOne : MonoBehaviour {
 	/// <summary>
 	/// 除雪車の重心。
 	/// </summary>
-	private Vector3 center = new Vector3 (0f,-3f,0f);
+	private Vector3 center = new Vector3 (0f,-3f,0.5f);
 
 
 

@@ -46,13 +46,24 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	/// </summary>
 	private bool isOnGround;
 
+	/// <summary>
+	/// 混乱アイテムを取った際のフラグ。
+	/// trueなら操作反転。
+	/// </summary>
 	public bool isReverse;
+
+	/// <summary>
+	/// 除雪車の重心。
+	/// </summary>
+	private Vector3 center = new Vector3 (0f,-3f,0.5f);
+
 
 	/// <summary>
 	/// 除雪車のRigidBodyを取得。
 	/// </summary>
 	void Start () {
 		carRigidbody = this.GetComponent<Rigidbody> ();
+		carRigidbody.centerOfMass = center;
 	}
 
 	/// <summary>

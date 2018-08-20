@@ -30930,6 +30930,16 @@ Prefab:
       propertyPath: m_Name
       value: SnowplowFirst
       objectReference: {fileID: 0}
+    - target: {fileID: 64195943569383648, guid: dab3e8860bd5525449a380e3fc2fa143,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82674307078541568, guid: dab3e8860bd5525449a380e3fc2fa143,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
   m_IsPrefabParent: 0
