@@ -55,12 +55,11 @@ public class CarMovePlayerOne : MonoBehaviour {
 	/// <summary>
 	/// 除雪車の重心。
 	/// </summary>
-	private Vector3 center = new Vector3 (0f,-3f,0.5f);
-
-
+	private Vector3 center = new Vector3 (0f,-3f,0f);
 
 	/// <summary>
 	/// 除雪車のRigidBodyを取得。
+	/// 除雪車の重心を設定。
 	/// </summary>
 	void Start () {
 		carRigidbody = this.GetComponent<Rigidbody> ();
@@ -118,6 +117,7 @@ public class CarMovePlayerOne : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
 			if (this.gameObject.transform.localEulerAngles.z <= 250 && this.gameObject.transform.localEulerAngles.z >= 80) {
 				this.gameObject.transform.eulerAngles = new Vector3 (0f, this.gameObject.transform.localEulerAngles.y, 0f);
+				carRigidbody.angularVelocity = Vector3.zero;
 			}
 		}
 

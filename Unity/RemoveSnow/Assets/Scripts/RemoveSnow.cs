@@ -5,11 +5,13 @@ using UnityEngine;
 public class RemoveSnow : MonoBehaviour {
 	/// <summary>
 	/// Player1のスコア
+	/// SnowShrinkの雪縮小判定とともに加算。
 	/// </summary>
 	static public float ScoreOne = 0;
 
 	/// <summary>
-	/// Player2のスコア
+	/// Player2のスコア.
+	/// SnowShrinkの雪縮小判定とともに加算。
 	/// </summary>
 	static public float ScoreTwo = 0;
 
@@ -18,7 +20,7 @@ public class RemoveSnow : MonoBehaviour {
 	/// 車操作のスクリプトから書き換え。
 	/// </summary>
 	[SerializeField]
-	public bool isGetScore = false;
+	public bool isGetScore = true;
 
 	[SerializeField]
 	private AudioSource source;
@@ -33,32 +35,11 @@ public class RemoveSnow : MonoBehaviour {
 		ScoreOne = 0;
 		ScoreTwo = 0;
 	}
-
-	/// <summary>
-	/// スコアを取得する処理。
-	/// Snowタグがついているオブジェクトに触り、isGetSocreフラグがTrueならスコア取得。
-	/// </summary>
-	/// <param name="other">Other.</param>
-	void OnCollisionEnter(Collision other){
-		if (other.gameObject.tag == "Snow") {
-			if (this.gameObject.tag == "Player" && isGetScore == true) {
-				
-				ScoreOne++;
-				source.PlayOneShot (snowSound);
-
-			}
-			if (this.gameObject.tag == "Player2" && isGetScore == true) {
-
-				ScoreTwo++;
-				source.PlayOneShot (snowSound);
-
-			}
-		}
-	}
-
+		
 	void Update(){
 		if (BattleGameMaster.IsStarted == false) {
 			isGetScore = false;
 		}
+			
 	}
 }
