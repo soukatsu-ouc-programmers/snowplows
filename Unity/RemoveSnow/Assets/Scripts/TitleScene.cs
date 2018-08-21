@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleScene : MonoBehaviour {
 
@@ -19,6 +20,9 @@ public class TitleScene : MonoBehaviour {
 	public void ChangeScene() {
 		// SE再生
 		GameObject.Find("DecideSE").GetComponent<AudioSource>().Play();
+
+		//ボタンを一度押したら、もう一度は押せないようする。
+		this.GetComponent<Button>().interactable = false;
 
 		// フェードアウトしてシーン遷移
 		GameObject.Find("FadeCanvas").GetComponent<Fade>().FadeIn(1.0f, () => {
