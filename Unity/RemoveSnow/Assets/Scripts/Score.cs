@@ -9,6 +9,12 @@ public class Score : MonoBehaviour {
 
 	private float playerTwoScore;
 
+	static public bool isHideScore;
+
+	void Start(){
+		isHideScore = false;
+	}
+
 	void Update (){
 
 		playerOneScore = RemoveSnow.ScoreOne;
@@ -21,6 +27,10 @@ public class Score : MonoBehaviour {
 
 		if (this.gameObject.name == "Text Score Player2") {
 			this.GetComponent<Text> ().text = playerTwoScore.ToString ("0");
+		}
+
+		if (isHideScore == true) {
+			this.GetComponent<Text> ().CrossFadeAlpha(0,0,true);
 		}
 	}
 }

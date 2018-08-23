@@ -75,6 +75,12 @@ public class Timer : MonoBehaviour {
 			timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
 		}
 		oldSeconds = seconds;
+
+		//制限時間ギリギリになったらスコアを非表示に
+		if (totalTime <= 10 + 1) {
+			Score.isHideScore = true;
+		}
+
 		if(totalTime <= 0f) {
 			// 制限時間終了
 			if(this.ZeroTimerEvent != null) {
