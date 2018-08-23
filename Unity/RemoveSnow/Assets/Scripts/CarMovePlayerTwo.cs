@@ -72,11 +72,6 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	/// </summary>
 	private int textNumber;
 
-	/// <summary>
-	/// 生成したテキストを格納。
-	/// </summary>
-	private GameObject currentText;
-
 
 	/// <summary>
 	/// 除雪車のRigidBodyを取得。
@@ -173,7 +168,6 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	}
 
 	void CreateText(){
-		currentText = Instantiate (effectText [textNumber], this.transform.position, this.transform.rotation, this.transform) as GameObject;
-		currentText.GetComponentInChildren<EffectText> ().TextColor = new Color (0, 255, 0);
+		Instantiate (effectText [textNumber], this.transform.position, this.transform.rotation, this.transform);
 	}
 }
