@@ -27,15 +27,7 @@ public class RemoveSnow : MonoBehaviour {
 
 	[SerializeField]
 	private AudioClip snowSound;
-
-	/// <summary>
-	/// スコアを初期化
-	/// </summary>
-	void Start(){
-		ScoreOne = 0;
-		ScoreTwo = 0;
-	}
-		
+			
 	void Update(){
 		if (BattleGameMaster.IsStarted == false) {
 			isGetScore = false;

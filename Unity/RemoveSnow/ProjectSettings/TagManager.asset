@@ -11,6 +11,10 @@ TagManager:
   - Snow
   - Item
   - Bullet
+  - Turbo
+  - Cannon
+  - BigBull
+  - Puzzle
   layers:
   - Default
   - TransparentFX

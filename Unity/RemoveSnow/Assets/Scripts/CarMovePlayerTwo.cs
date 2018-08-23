@@ -58,6 +58,27 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	private Vector3 center = new Vector3 (0f,-3f,0f);
 
 	/// <summary>
+	/// 表示させるテキストを格納。
+	/// </summary>
+	[SerializeField]
+	private GameObject[] effectText;
+
+	/// <summary>
+	/// 表示させるテキストを指定。
+	/// 0=ターボ
+	/// 1=キャノン
+	/// 2=でかいやつ
+	/// 3=混乱
+	/// </summary>
+	private int textNumber;
+
+	/// <summary>
+	/// 生成したテキストを格納。
+	/// </summary>
+	private GameObject currentText;
+
+
+	/// <summary>
 	/// 除雪車のRigidBodyを取得。
 	/// 除雪車の重心を設定。
 	/// </summary>
@@ -128,5 +149,31 @@ public class CarMovePlayerTwo : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void OnTriggerEnter(Collider other){
+		switch (other.gameObject.tag) {
+		case "Turbo":
+			textNumber = 0;
+			CreateText ();
+			break;
+		case "Cannon":
+			textNumber = 1;
+			CreateText ();
+			break;
+		case "BigBull":
+			textNumber = 2;
+			CreateText ();
+			break;
+		case "Puzzle":
+			textNumber = 3;
+			CreateText ();
+			break;
+		}
+	}
+
+	void CreateText(){
+		currentText = Instantiate (effectText [textNumber], this.transform.position, this.transform.rotation, this.transform) as GameObject;
+		currentText.GetComponentInChildren<EffectText> ().TextColor = new Color (0, 255, 0);
 	}
 }

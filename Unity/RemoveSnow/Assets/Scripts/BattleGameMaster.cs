@@ -36,6 +36,11 @@ public class BattleGameMaster : MonoBehaviour {
 	/// 最初の処理
 	/// </summary>
 	void Start() {
+
+		//スコア初期化
+		RemoveSnow.ScoreOne = 0;
+		RemoveSnow.ScoreTwo = 0;
+
 		BattleGameMaster.IsStarted = false;
 
 		this.Fader.FadeIn(0, () => {

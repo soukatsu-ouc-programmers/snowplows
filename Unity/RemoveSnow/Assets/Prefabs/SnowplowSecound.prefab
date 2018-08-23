@@ -284,6 +284,11 @@ MonoBehaviour:
   rotateSpeed: 3
   jumpPower: 2
   isReverse: 0
+  effectText:
+  - {fileID: 1282902503280682, guid: 1bbaa3be68efaf74ca64a0311b91af2d, type: 2}
+  - {fileID: 1735512681266418, guid: ce6faf130dc70104d9a8c15508147f23, type: 2}
+  - {fileID: 1911507372700840, guid: 8e3f5c795cac457468fe64998574c70d, type: 2}
+  - {fileID: 1945009508172102, guid: 61a47d083673fbb4cb8d6136c2af973d, type: 2}
 --- !u!114 &114940063360431102
 MonoBehaviour:
   m_ObjectHideFlags: 1

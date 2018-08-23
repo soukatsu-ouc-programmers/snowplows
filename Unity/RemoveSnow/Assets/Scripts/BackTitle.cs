@@ -4,11 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BackTitle : MonoBehaviour {
-
-	void Update(){
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			SceneManager.LoadScene ("TitleScene");
-		}
+	
+	public void GoTitle(){
+		SceneManager.LoadScene ("TitleScene");
 	}
 
 }
