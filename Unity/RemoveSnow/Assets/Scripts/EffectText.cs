@@ -10,30 +10,51 @@ public class EffectText : MonoBehaviour {
 
 	private int colorNumber;
 
-	void Start(){
-		switch (this.gameObject.transform.parent.name) {
-		case "Text SpeedUp(Clone)":
-			colorNumber = 0;
-			break;
-		case "Text Cannon(Clone)":
-			colorNumber = 1;
-			break;
-		case "Text SizeUp(Clone)":
-			colorNumber = 2;
-			break;
-		case "Text Puzzle(Clone)":
-			colorNumber = 3;
-			break;
+	/// <summary>
+	/// エフェクトフレーム時間
+	/// </summary>
+	public const int EffectTimeFrames = 90;
+
+	void Start() {
+		switch(this.gameObject.transform.parent.name) {
+			case "Text SpeedUp(Clone)":
+				colorNumber = 0;
+				break;
+			case "Text Cannon(Clone)":
+				colorNumber = 1;
+				break;
+			case "Text SizeUp(Clone)":
+				colorNumber = 2;
+				break;
+			case "Text Puzzle(Clone)":
+				colorNumber = 3;
+				break;
 		}
-		StartCoroutine ("FadeOut");
+		StartCoroutine("FadeOut");
 	}
 
-	IEnumerator FadeOut(){
-		for (float i = 0; i <= 30.0f; i++) {
-			this.GetComponent<Text> ().color = new Color (textColor[colorNumber].r, textColor[colorNumber].g, textColor[colorNumber].b, 1.0f - i/30.0f);
-			this.transform.parent.transform.Translate (transform.up * 0.01f);
+	IEnumerator FadeOut() {
+		// 初回色設定
+		this.GetComponent<Text>().color = new Color(
+			textColor[colorNumber].r,
+			textColor[colorNumber].g,
+			textColor[colorNumber].b,
+			1.0f
+		);
+
+		for(int i = 0; i <= EffectTimeFrames; i += 1) {
+			if(i >= EffectTimeFrames / 2) {
+				// アニメーション後半からフェードさせる
+				this.GetComponent<Text>().color = new Color(
+					textColor[colorNumber].r,
+					textColor[colorNumber].g,
+					textColor[colorNumber].b,
+					1.0f - (i / 2) / (EffectTimeFrames / 2.0f)
+				);
+			}
+			this.transform.parent.transform.Translate(transform.up * 0.0025f);
 			yield return null;
 		}
-		Destroy (this.transform.parent.gameObject);
+		Destroy(this.transform.parent.gameObject);
 	}
 }

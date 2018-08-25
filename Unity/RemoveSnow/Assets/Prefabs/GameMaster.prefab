@@ -53,10 +53,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fader: {fileID: 0}
   Subtitles:
-  - {fileID: 1004125353007456, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-  - {fileID: 1172404646734048, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-  - {fileID: 1481709724532092, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   SEGroup:
-  - {fileID: 82789102501726334, guid: e5cd3767b93a7834bb160003199a831d, type: 2}
-  - {fileID: 82723043943642210, guid: e5cd3767b93a7834bb160003199a831d, type: 2}
-  - {fileID: 82987800620084846, guid: e5cd3767b93a7834bb160003199a831d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -87,7 +87,7 @@ public class BattleGameMaster : MonoBehaviour {
 	/// <returns></returns>
 	IEnumerator StartingSubtitle2() {
 		// 一定時間待つ
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(2.0f);
 
 		// SE再生
 		this.SEGroup[1].Play();
@@ -144,11 +144,11 @@ public class BattleGameMaster : MonoBehaviour {
 	/// タイマーがゼロになったときに終了処理を行う
 	/// </summary>
 	public void EndTimer() {
-
 		IsStarted = false;
 
 		// SE再生
 		this.SEGroup[2].Play();
+		this.Invoke("DelayFinishVoice", 1.5f);
 
 		this.Subtitles[2].SetActive(true);
 		this.Subtitles[2].transform.localScale = Vector3.zero;
@@ -169,6 +169,13 @@ public class BattleGameMaster : MonoBehaviour {
 		);
 	}
 
+	/// <summary>
+	/// 終了のアナウンスをホイッスルの後に続ける
+	/// </summary>
+	private void DelayFinishVoice() {
+		this.SEGroup[3].Play();
+	}
+	
 	/// <summary>
 	/// Finish表示の解除
 	/// </summary>

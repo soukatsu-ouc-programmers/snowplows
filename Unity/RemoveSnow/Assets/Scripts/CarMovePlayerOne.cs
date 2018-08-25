@@ -147,24 +147,25 @@ public class CarMovePlayerOne : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		switch (other.gameObject.tag) {
-		case "Turbo":
-			textNumber = 0;
-			CreateText ();
-			break;
-		case "Cannon":
-			textNumber = 1;
-			CreateText ();
-			break;
-		case "BigBull":
-			textNumber = 2;
-			CreateText ();
-			break;
-		case "Puzzle":
-			textNumber = 3;
-			CreateText ();
-			break;
+		switch(other.gameObject.tag) {
+			case "Turbo":
+				textNumber = 0;
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
+				break;
+			case "Cannon":
+				textNumber = 1;
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
+				break;
+			case "BigBull":
+				textNumber = 2;
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
+				break;
+			case "Puzzle":
+				textNumber = 3;
+				GameObject.Find("SEGroup").transform.Find("ItemPuzzle").GetComponent<AudioSource>().Play();
+				break;
 		}
+		CreateText();
 	}
 
 	void CreateText(){

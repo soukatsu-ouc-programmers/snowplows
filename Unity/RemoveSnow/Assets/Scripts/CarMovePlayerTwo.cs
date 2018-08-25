@@ -6,7 +6,7 @@ using UnityEngine;
 /// Player2の除雪車にアタッチ。
 /// </summary>
 public class CarMovePlayerTwo : MonoBehaviour {
-	
+
 	/// <summary>
 	/// 横方向の入力。(A, D)
 	/// </summary>
@@ -55,7 +55,7 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	/// <summary>
 	/// 除雪車の重心。
 	/// </summary>
-	private Vector3 center = new Vector3 (0f,-3f,0f);
+	private Vector3 center = new Vector3(0f, -3f, 0f);
 
 	/// <summary>
 	/// 表示させるテキストを格納。
@@ -77,38 +77,38 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	/// 除雪車のRigidBodyを取得。
 	/// 除雪車の重心を設定。
 	/// </summary>
-	void Start () {
-		carRigidbody = this.GetComponent<Rigidbody> ();
+	void Start() {
+		carRigidbody = this.GetComponent<Rigidbody>();
 		carRigidbody.centerOfMass = center;
 	}
 
 	/// <summary>
 	/// キー入力を取得。
 	/// </summary>
-	void Update () {
+	void Update() {
 
-		if (BattleGameMaster.IsStarted == false) {
+		if(BattleGameMaster.IsStarted == false) {
 			inputVertical = 0f;
 			inputHorizontal = 0f;
 			return;
 		}
 
-		inputHorizontal = Input.GetAxisRaw ("Horizontal2");
-		inputVertical = Input.GetAxisRaw ("Vertical2");
+		inputHorizontal = Input.GetAxisRaw("Horizontal2");
+		inputVertical = Input.GetAxisRaw("Vertical2");
 
-		if (isReverse == true) {
+		if(isReverse == true) {
 			inputHorizontal = -inputHorizontal;
 			inputVertical = -inputVertical;
 		}
-			
+
 		//後ろ方向のキーが入力されている場合、スコア取得できなくする。
-		if (inputVertical <= 0) {
-			this.GetComponent<RemoveSnow> ().isGetScore = false;
+		if(inputVertical <= 0) {
+			this.GetComponent<RemoveSnow>().isGetScore = false;
 		}
 
 		//前方向のキーが入力されている場合、スコアが取得できるようにする。
-		if (inputVertical > 0) {
-			this.GetComponent<RemoveSnow> ().isGetScore = true;
+		if(inputVertical > 0) {
+			this.GetComponent<RemoveSnow>().isGetScore = true;
 		}
 	}
 
@@ -116,8 +116,8 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	/// ジャンプできるかどうかのフラグを管理。
 	/// </summary>
 	/// <param name="other">Other.</param>
-	void OnCollisionStay(Collision other){
-		if (other.gameObject.tag == "Ground"|| other.gameObject.tag == "Snow") {
+	void OnCollisionStay(Collision other) {
+		if(other.gameObject.tag == "Ground" || other.gameObject.tag == "Snow") {
 			isOnGround = true;
 		}
 	}
@@ -125,49 +125,50 @@ public class CarMovePlayerTwo : MonoBehaviour {
 	/// <summary>
 	/// 除雪車の移動及び回転のリセット（横転時の救済処置）。
 	/// </summary>
-	void FixedUpdate(){
+	void FixedUpdate() {
 
-		this.gameObject.transform.Translate (Vector3.forward * inputVertical * moveSpeed,Space.Self);
-		this.gameObject.transform.Rotate (Vector3.up * inputHorizontal * rotateSpeed, Space.Self);
+		this.gameObject.transform.Translate(Vector3.forward * inputVertical * moveSpeed, Space.Self);
+		this.gameObject.transform.Rotate(Vector3.up * inputHorizontal * rotateSpeed, Space.Self);
 
-		if (Input.GetKeyDown(KeyCode.RightShift)){
-			if (this.gameObject.transform.localEulerAngles.z <= 250 && this.gameObject.transform.localEulerAngles.z >= 80) {
-				this.gameObject.transform.eulerAngles = new Vector3 (0f, this.gameObject.transform.localEulerAngles.y, 0f);
+		if(Input.GetKeyDown(KeyCode.RightShift)) {
+			if(this.gameObject.transform.localEulerAngles.z <= 250 && this.gameObject.transform.localEulerAngles.z >= 80) {
+				this.gameObject.transform.eulerAngles = new Vector3(0f, this.gameObject.transform.localEulerAngles.y, 0f);
 				carRigidbody.angularVelocity = Vector3.zero;
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.RightAlt)) {
-			if (isOnGround == true) {
-				carRigidbody.AddForce (Vector3.up * jumpPower, ForceMode.VelocityChange);
+		if(Input.GetKeyDown(KeyCode.RightAlt)) {
+			if(isOnGround == true) {
+				carRigidbody.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
 				isOnGround = false;
 			}
 		}
 
 	}
 
-	void OnTriggerEnter(Collider other){
-		switch (other.gameObject.tag) {
-		case "Turbo":
-			textNumber = 0;
-			CreateText ();
-			break;
-		case "Cannon":
-			textNumber = 1;
-			CreateText ();
-			break;
-		case "BigBull":
-			textNumber = 2;
-			CreateText ();
-			break;
-		case "Puzzle":
-			textNumber = 3;
-			CreateText ();
-			break;
+	void OnTriggerEnter(Collider other) {
+		switch(other.gameObject.tag) {
+			case "Turbo":
+				textNumber = 0;
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
+				break;
+			case "Cannon":
+				textNumber = 1;
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
+				break;
+			case "BigBull":
+				textNumber = 2;
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
+				break;
+			case "Puzzle":
+				textNumber = 3;
+				GameObject.Find("SEGroup").transform.Find("ItemPuzzle").GetComponent<AudioSource>().Play();
+				break;
 		}
+		CreateText();
 	}
 
-	void CreateText(){
-		Instantiate (effectText [textNumber], this.transform.position, this.transform.rotation, this.transform);
+	void CreateText() {
+		Instantiate(effectText[textNumber], this.transform.position, this.transform.rotation, this.transform);
 	}
 }

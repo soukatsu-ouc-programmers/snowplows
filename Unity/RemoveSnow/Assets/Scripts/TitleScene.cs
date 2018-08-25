@@ -8,10 +8,21 @@ using UnityEngine.UI;
 public class TitleScene : MonoBehaviour {
 
 	/// <summary>
+	/// フェーダー
+	/// </summary>
+	[SerializeField] Fade Fader;
+
+	/// <summary>
 	/// タイトル画面のBGMが一周したら自動的に次のシーンに移る
 	/// </summary>
 	void Start() {
 		this.Invoke("ChangeScene", 90f);
+
+		// フェード解除
+		this.Fader.FadeIn(0, () => {
+			GameObject.Find("StartingMask").SetActive(false);
+			this.Fader.FadeOut(1.0f, null);
+		});
 	}
 	
 	/// <summary>

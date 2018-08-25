@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GetCannon : MonoBehaviour {
-	
+
 	[SerializeField]
 	private GameObject redCannon;
 
@@ -12,37 +12,24 @@ public class GetCannon : MonoBehaviour {
 
 	private GameObject player;
 
-	private AudioSource source;
-	[SerializeField]
-	private AudioClip itemSound;
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.name.IndexOf("BigBull") == -1) {
+			switch(other.gameObject.tag) {
+				case "Player":
 
-	void Start(){
-		source = this.GetComponent<AudioSource> ();
-	}
+					player = other.gameObject;
+					var parentOne = player.transform;
+					Instantiate(redCannon, player.transform.position, player.transform.rotation, parentOne);
+					Destroy(this.gameObject);
+					break;
 
-	void OnTriggerEnter(Collider other){
-		if (other.gameObject.name.IndexOf("BigBull") == -1) {
-			switch (other.gameObject.tag) {
-			case "Player":
+				case "Player2":
 
-				source.PlayOneShot (itemSound);
-				player = other.gameObject;
-				var parentOne = player.transform;
-				Instantiate (redCannon, player.transform.position, player.transform.rotation, parentOne);
-				Destroy (this.gameObject);
-				break;
-
-			case "Player2":
-			
-				source.PlayOneShot (itemSound);
-				player = other.gameObject;
-				var parentTwo = player.transform;
-				Instantiate (greenCannon, player.transform.position, player.transform.rotation, parentTwo);
-				Destroy (this.gameObject);
-				break;
-
-			default:
-				break;
+					player = other.gameObject;
+					var parentTwo = player.transform;
+					Instantiate(greenCannon, player.transform.position, player.transform.rotation, parentTwo);
+					Destroy(this.gameObject);
+					break;
 			}
 		}
 	}

@@ -10,8 +10,9 @@ public class Result : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.GetComponent<Text> ().text = "Player1   Score   " + RemoveSnow.ScoreOne.ToString ("<color=red>0</color>")
-			+ "\r\nPlayer2  Score   " + RemoveSnow.ScoreTwo.ToString("<color=green>0</color>");
+		this.GetComponent<Text> ().text = 
+			RemoveSnow.ScoreOne.ToString ("<color=red>0</color>") + "\r\n"
+			+ RemoveSnow.ScoreTwo.ToString("<color=green>0</color>");
 	}
 
 }

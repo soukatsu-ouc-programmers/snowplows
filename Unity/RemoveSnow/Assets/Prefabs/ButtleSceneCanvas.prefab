@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 114432085370752836}
   - component: {fileID: 114817064735674592}
   - component: {fileID: 82122612904921998}
+  - component: {fileID: 114248260249511190}
   m_Layer: 5
   m_Name: ButtleSceneCanvas
   m_TagString: Untagged
@@ -260,7 +261,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -439,6 +440,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00:00
+--- !u!114 &114248260249511190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579827817038860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2140ebcf62d0274459b63900e1dccd56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOneImage: {fileID: 1268458927968544}
+  playerTwoImage: {fileID: 1644865379587942}
 --- !u!114 &114332139981097628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -559,7 +573,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Finish!
+  m_Text: FINISH !
 --- !u!114 &114817064735674592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -619,7 +633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go!
+  m_Text: GO !
 --- !u!114 &114914136057728284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -679,7 +693,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ready
+  m_Text: READY ?
 --- !u!114 &114961651655252556
 MonoBehaviour:
   m_ObjectHideFlags: 1
