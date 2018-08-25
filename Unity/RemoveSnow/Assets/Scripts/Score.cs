@@ -11,26 +11,32 @@ public class Score : MonoBehaviour {
 
 	static public bool isHideScore;
 
-	void Start(){
+	void Start() {
 		isHideScore = false;
 	}
 
-	void Update (){
-
+	void Update() {
 		playerOneScore = RemoveSnow.ScoreOne;
-
 		playerTwoScore = RemoveSnow.ScoreTwo;
 
-		if (this.gameObject.name == "Text Score Player1") {
-			this.GetComponent<Text> ().text = playerOneScore.ToString ("0");
+		if(this.gameObject.name == "Text Score Player1") {
+			if(isHideScore == false) {
+				this.GetComponent<Text>().text = playerOneScore.ToString("0");
+			} else {
+				this.GetComponent<Text>().text = "????";
+			}
 		}
 
-		if (this.gameObject.name == "Text Score Player2") {
-			this.GetComponent<Text> ().text = playerTwoScore.ToString ("0");
+		if(this.gameObject.name == "Text Score Player2") {
+			if(isHideScore == false) {
+				this.GetComponent<Text>().text = playerTwoScore.ToString("0");
+			} else {
+				this.GetComponent<Text>().text = "????";
+			}
 		}
 
-		if (isHideScore == true) {
-			this.GetComponent<Text> ().CrossFadeAlpha(0,0,true);
-		}
+		// if (isHideScore == true) {
+		// this.GetComponent<Text> ().CrossFadeAlpha(0,0,true);
+		// }
 	}
 }
