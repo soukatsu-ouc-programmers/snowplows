@@ -11,7 +11,7 @@ public class Respawn : MonoBehaviour {
 	/// <summary>
 	/// 落下ペナルティとして減点するスコア量
 	/// </summary>
-	public const int PenaltyScore = 100;
+	public const int PenaltyScore = 300;
 
 	/// <summary>
 	/// プレイヤーごとの復帰位置
@@ -31,6 +31,9 @@ public class Respawn : MonoBehaviour {
 		}
 		index = PlayerScore.PlayerIndexMap[other.gameObject.tag];
 
+		// SE再生
+		GameObject.Find("FallPenalty").GetComponent<AudioSource>().Play();
+
 		// 所定の位置に移動して体勢を立て直す
 		other.gameObject.transform.position = this.respawnPositions[index];
 		other.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -39,7 +42,7 @@ public class Respawn : MonoBehaviour {
 
 		// 得点ペナルティを与える
 		if(PlayerScore.Scores[index] >= Respawn.PenaltyScore) {
-			PlayerScore.Scores[index] = PlayerScore.Scores[index] - Respawn.PenaltyScore;
+			PlayerScore.Scores[index] -= Respawn.PenaltyScore;
 		} else {
 			PlayerScore.Scores[index] = 0;
 		}

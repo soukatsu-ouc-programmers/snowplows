@@ -8081,49 +8081,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
-      propertyPath: Subtitles.Array.data[0]
-      value: 
-      objectReference: {fileID: 917902457}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: Subtitles.Array.data[1]
-      value: 
-      objectReference: {fileID: 3006512}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: Subtitles.Array.data[2]
-      value: 
-      objectReference: {fileID: 1498252102}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: SEGroup.Array.data[0]
-      value: 
-      objectReference: {fileID: 1858256801}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: SEGroup.Array.data[1]
-      value: 
-      objectReference: {fileID: 926354148}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: SEGroup.Array.data[2]
-      value: 
-      objectReference: {fileID: 2094317318}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: Fader
+      propertyPath: fader
       value: 
       objectReference: {fileID: 1143596670}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: SEGroup.Array.data[3]
-      value: 
-      objectReference: {fileID: 2094317317}
-    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
-        type: 2}
-      propertyPath: SEGroup.Array.data[4]
-      value: 
-      objectReference: {fileID: 1837710014}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
       propertyPath: subtitles.Array.data[0]
@@ -8171,9 +8131,9 @@ Prefab:
       objectReference: {fileID: 835568857}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
-      propertyPath: fader
+      propertyPath: seGroup.Array.data[6]
       value: 
-      objectReference: {fileID: 1143596670}
+      objectReference: {fileID: 2094317319}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7306b9b8ac5d565479e3f858f16edd33, type: 2}
   m_IsPrefabParent: 0
@@ -30707,7 +30667,7 @@ Transform:
   m_PrefabInternal: {fileID: 834093990}
 --- !u!82 &835568857 stripped
 AudioSource:
-  m_PrefabParentObject: {fileID: 82013490643793898, guid: e5cd3767b93a7834bb160003199a831d,
+  m_PrefabParentObject: {fileID: 82485824237846638, guid: e5cd3767b93a7834bb160003199a831d,
     type: 2}
   m_PrefabInternal: {fileID: 2094317316}
 --- !u!1001 &836792933
@@ -79873,6 +79833,11 @@ AudioSource:
 --- !u!82 &2094317318 stripped
 AudioSource:
   m_PrefabParentObject: {fileID: 82995008601974214, guid: e5cd3767b93a7834bb160003199a831d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2094317316}
+--- !u!82 &2094317319 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82013490643793898, guid: e5cd3767b93a7834bb160003199a831d,
     type: 2}
   m_PrefabInternal: {fileID: 2094317316}
 --- !u!1001 &2102332834
