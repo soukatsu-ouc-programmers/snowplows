@@ -51,14 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bbd4ae11f9ffe4d9b5f7c34314e97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fader: {fileID: 0}
-  Subtitles:
+  fader: {fileID: 0}
+  subtitles:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  SEGroup:
+  seGroup:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  resultSceneID: 4
