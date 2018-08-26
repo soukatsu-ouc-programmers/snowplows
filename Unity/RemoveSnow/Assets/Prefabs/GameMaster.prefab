@@ -51,12 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bbd4ae11f9ffe4d9b5f7c34314e97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fader: {fileID: 0}
-  Subtitles:
-  - {fileID: 1004125353007456, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-  - {fileID: 1172404646734048, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-  - {fileID: 1481709724532092, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-  SEGroup:
-  - {fileID: 82789102501726334, guid: e5cd3767b93a7834bb160003199a831d, type: 2}
-  - {fileID: 82723043943642210, guid: e5cd3767b93a7834bb160003199a831d, type: 2}
-  - {fileID: 82987800620084846, guid: e5cd3767b93a7834bb160003199a831d, type: 2}
+  fader: {fileID: 0}
+  subtitles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  seGroup:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  resultSceneID: 4

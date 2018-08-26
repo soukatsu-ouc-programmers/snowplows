@@ -106,7 +106,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9c2c3bc6a587ec24bb388309e46265d6, type: 3}
     m_FontSize: 300
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 300
@@ -116,7 +116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Cannon
+  m_Text: CANNON
 --- !u!114 &114659710868346046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,11 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568292e976262f24daa1791924e1c801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textColor:
+  textColors:
   - {r: 1, g: 0.5586207, b: 0, a: 0}
-  - {r: 0.5588235, g: 0.5588235, b: 0.5588235, a: 0}
-  - {r: 0, g: 0.6275863, b: 1, a: 0}
-  - {r: 0.19999993, g: 1, b: 0, a: 0}
+  - {r: 0.32352942, g: 0.32352942, b: 0.32352942, a: 0.097}
+  - {r: 0, g: 0.666, b: 1, a: 0}
+  - {r: 0, g: 0.9264706, b: 0.121399716, a: 0}
 --- !u!222 &222336818172611802
 CanvasRenderer:
   m_ObjectHideFlags: 1

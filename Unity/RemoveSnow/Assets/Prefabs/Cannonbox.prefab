@@ -193,7 +193,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -240,7 +240,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543814fe149bb954fa174071ef6e78c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redCannon: {fileID: 1617939223736450, guid: 73e6b8da32f74d74ab4f8016dafc24bd, type: 2}
-  greenCannon: {fileID: 1084927418793570, guid: d2add6fe06765e740bbc0d9dee9f27d9,
-    type: 2}
-  itemSound: {fileID: 8300000, guid: bbe86e7e3c8408647968766767e91798, type: 3}
+  playerCannons:
+  - {fileID: 1617939223736450, guid: 73e6b8da32f74d74ab4f8016dafc24bd, type: 2}
+  - {fileID: 1084927418793570, guid: d2add6fe06765e740bbc0d9dee9f27d9, type: 2}

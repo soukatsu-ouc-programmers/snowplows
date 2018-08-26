@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224469593321229004}
   - component: {fileID: 222998446410394638}
   - component: {fileID: 114121836081943186}
-  - component: {fileID: 114706930777139304}
+  - component: {fileID: 114430116896332290}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9c2c3bc6a587ec24bb388309e46265d6, type: 3}
     m_FontSize: 300
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 300
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Speed Up\u2191"
+  m_Text: "SPEED UP \u2191"
 --- !u!114 &114272642966466502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114706930777139304
+--- !u!114 &114430116896332290
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,11 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568292e976262f24daa1791924e1c801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textColor:
+  textColors:
   - {r: 1, g: 0.5586207, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0.6275863, b: 1, a: 0}
-  - {r: 0.19999993, g: 1, b: 0, a: 0}
+  - {r: 0.32352942, g: 0.32352942, b: 0.32352942, a: 0.09803922}
+  - {r: 0, g: 0.666, b: 1, a: 0}
+  - {r: 0, g: 0.9264706, b: 0.121399716, a: 0}
 --- !u!114 &114787171234397398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,8 +184,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282902503280682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0128}
-  m_LocalScale: {x: 0.00007191611, y: 0.00007191605, z: 0.00007191608}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01279976}
+  m_LocalScale: {x: 0.00007200002, y: 0.000072, z: 0.00007200002}
   m_Children:
   - {fileID: 224469593321229004}
   m_Father: {fileID: 0}
@@ -193,6 +193,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000000014901161, y: 0.0817}
+  m_AnchoredPosition: {x: -0.00001525879, y: 0.081707}
   m_SizeDelta: {x: 1562.323, y: 556.283}
   m_Pivot: {x: 0.5, y: 0.5}
