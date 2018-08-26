@@ -17,15 +17,49 @@ public class TitleScene : MonoBehaviour {
 	private Fade fader;
 
 	/// <summary>
+	/// フェードインが完了したかどうか
+	/// </summary>
+	private bool fadeInCompleted;
+
+	/// <summary>
 	/// タイトル画面のBGMが一周したら自動的に次のシーンに移る
 	/// </summary>
-	void Start() {
+	public void Start() {
+		this.fadeInCompleted = false;
 		this.Invoke("ChangeScene", 90f);
 
-		// フェード解除
+		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
+		this.Invoke("fadeIn", 0.5f);
+	}
+
+	/// <summary>
+	/// キー入力でも次のシーンへ移る
+	/// </summary>
+	public void Update() {
+		if(this.fadeInCompleted == false) {
+			// フェードインが終わっていないときは操作不能にする
+			return;
+		}
+		if(this.GetComponent<Button>().interactable == false) {
+			// ボタンが押せなくなっているときはこちらも操作不能にする
+			return;
+		}
+
+		if(Input.GetKeyDown(KeyCode.Joystick1Button0) == true
+		|| Input.GetKeyDown(KeyCode.Return) == true) {
+			this.ChangeScene();
+		}
+	}
+
+	/// <summary>
+	/// 遅延処理用：フェードインしてシーン開始
+	/// </summary>
+	private void fadeIn() {
 		this.fader.FadeIn(0, () => {
 			GameObject.Find("StartingMask").SetActive(false);
-			this.fader.FadeOut(1.0f, null);
+			this.fader.FadeOut(1.0f, () => {
+				this.fadeInCompleted = true;
+			});
 		});
 	}
 

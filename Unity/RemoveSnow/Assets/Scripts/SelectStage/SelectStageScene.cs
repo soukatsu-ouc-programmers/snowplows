@@ -24,6 +24,11 @@ public class SelectStageScene : MonoBehaviour {
 	public const float AndleDelta = 5.0f;
 
 	/// <summary>
+	/// フェードインが完了したかどうか
+	/// </summary>
+	private bool fadeInCompleted;
+
+	/// <summary>
 	/// 現在の回転角度
 	/// </summary>
 	private float currentAngle;
@@ -82,9 +87,17 @@ public class SelectStageScene : MonoBehaviour {
 	/// 初期化
 	/// </summary>
 	public void Start() {
+		this.fadeInCompleted = false;
 		this.currentAngle = float.NaN;
 
-		// フェードイン
+		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
+		this.Invoke("fadeIn", 0.5f);
+	}
+
+	/// <summary>
+	/// 遅延処理用：フェードインしてシーン開始
+	/// </summary>
+	private void fadeIn() {
 		this.faders[0].gameObject.SetActive(true);
 		this.faders[0].FadeIn(0, () => {
 			GameObject.Find("StartingMask").SetActive(false);
@@ -104,7 +117,9 @@ public class SelectStageScene : MonoBehaviour {
 				}
 			}
 
-			this.faders[0].FadeOut(1.0f);
+			this.faders[0].FadeOut(1.0f, () => {
+				this.fadeInCompleted = true;
+			});
 		});
 	}
 
@@ -112,21 +127,33 @@ public class SelectStageScene : MonoBehaviour {
 	/// プレイヤー操作受付
 	/// </summary>
 	public void Update() {
+		if(this.fadeInCompleted == false) {
+			// フェードインが終わっていないときは操作不能にする
+			return;
+		}
 		if(float.IsNaN(this.currentAngle) == false) {
 			// ステージ回転中は入力を受け付けない
 			return;
 		}
+		if(this.buttons.Length > 0 && this.buttons[0].activeSelf == false) {
+			// ボタンが無効化されている場合も操作を受け付けない
+			return;
+		}
 
 		// ステージ選択
-		if(Input.GetKeyDown(KeyCode.RightArrow)) {
+		var inputHorizontal = Input.GetAxisRaw("Horizontal");
+		if(Input.GetKeyDown(KeyCode.RightArrow) == true
+		|| inputHorizontal > 0) {
 			this.SelectNextStage();
 		}
-		if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+		if(Input.GetKeyDown(KeyCode.LeftArrow) == true
+		|| inputHorizontal < 0) {
 			this.SelectPreviousStage();
 		}
 
 		// ステージ決定
-		if(Input.GetKeyDown(KeyCode.Return)) {
+		if(Input.GetKeyDown(KeyCode.Return) == true
+		|| Input.GetKeyDown(KeyCode.Joystick1Button0) == true) {
 			this.StartGame();
 		}
 	}
@@ -251,6 +278,11 @@ public class SelectStageScene : MonoBehaviour {
 	/// ゲームを開始する
 	/// </summary>
 	public void StartGame() {
+		if(this.fadeInCompleted == false) {
+			// フェードインが終わっていないときは操作不能にする
+			return;
+		}
+
 		GameObject.Find("DecideSE").GetComponent<AudioSource>().Play();
 
 		// ボタン類一式を無効化
@@ -259,7 +291,6 @@ public class SelectStageScene : MonoBehaviour {
 		}
 
 		// フェードアウトしてシーン遷移
-		this.faders[1].gameObject.SetActive(true);
 		this.faders[1].FadeIn(1.0f, () => {
 			SceneManager.LoadScene(this.stageSceneIDs[SelectStageScene.StageIndex]);
 		});

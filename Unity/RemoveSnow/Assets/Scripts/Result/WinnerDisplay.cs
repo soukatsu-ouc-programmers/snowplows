@@ -55,7 +55,6 @@ public class WinnerDisplay : MonoBehaviour {
 					break;
 				}
 
-				var child = shavedIcesTransform.GetChild(i);
 				var isWinner = (PlayerScore.Scores[i] == scores.Max());
 				if(isWinner == false) {
 					GameObject.Find(PlayerScore.PlayerColorNames[i] + "ShavedIce").SetActive(false);

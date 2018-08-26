@@ -50,7 +50,14 @@ public class SnowBattleScene : MonoBehaviour {
 		PlayerScore.Init(2);
 		SnowBattleScene.IsStarted = false;
 
-		// 明転
+		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
+		this.Invoke("fadeIn", 0.5f);
+	}
+
+	/// <summary>
+	/// 遅延処理用：フェードインしてシーン開始
+	/// </summary>
+	private void fadeIn() {
 		this.fader.FadeIn(0, () => {
 			GameObject.Find("StartingMask").SetActive(false);
 

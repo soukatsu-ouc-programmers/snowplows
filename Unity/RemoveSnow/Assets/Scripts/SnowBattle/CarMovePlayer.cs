@@ -9,9 +9,20 @@ using UnityEngine;
 public class CarMovePlayer : MonoBehaviour {
 
 	/// <summary>
+	/// コントローラー１つ分のKeyCodeのオフセット
+	/// </summary>
+	public const int JoypadButtonOffset = KeyCode.Joystick2Button0 - KeyCode.Joystick1Button0;
+
+	/// <summary>
 	/// 除雪車の重心
 	/// </summary>
 	static private readonly Vector3 CenterGravity = new Vector3(0f, -3f, 0f);
+
+	/// <summary>
+	/// プレイヤーインデックス
+	/// </summary>
+	[SerializeField]
+	private int playerIndex;
 
 	/// <summary>
 	/// 横方向の移動量
@@ -179,7 +190,8 @@ public class CarMovePlayer : MonoBehaviour {
 		this.gameObject.transform.Translate(Vector3.forward * this.inputVertical * this.MoveSpeed, Space.Self);
 		this.gameObject.transform.Rotate(Vector3.up * this.inputHorizontal * this.rotateSpeed, Space.Self);
 
-		if(Input.GetKeyDown(this.keyCodeRestoreFromRollover)) {
+		if(Input.GetKeyDown(this.keyCodeRestoreFromRollover) == true
+		|| Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button0 + this.playerIndex * JoypadButtonOffset)) == true) {
 			// 一定の閾値を超えたときに横転を復帰する
 			if(this.gameObject.transform.localEulerAngles.z <= 250
 			&& this.gameObject.transform.localEulerAngles.z >= 80) {
@@ -188,7 +200,8 @@ public class CarMovePlayer : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(this.keyCodeJump)) {
+		if(Input.GetKeyDown(this.keyCodeJump) == true
+		|| Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button1 + this.playerIndex * JoypadButtonOffset)) == true) {
 			// ジャンプする
 			if(this.isOnGround == true) {
 				this.carRigidbody.AddForce(Vector3.up * this.jumpPower, ForceMode.VelocityChange);
