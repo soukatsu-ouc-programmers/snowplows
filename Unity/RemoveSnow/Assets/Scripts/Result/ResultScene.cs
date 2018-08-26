@@ -65,6 +65,8 @@ public class ResultScene : MonoBehaviour {
 	/// 遅延処理用：フェーダー的にはフェードアウトがフェードイン（イミフ）
 	/// </summary>
 	private void FadeIn() {
+		// BGM再生
+		GameObject.Find("Canvas").GetComponent<AudioSource>().Play();
 		this.fader.FadeOut(1.0f, () => {
 			this.fadeInCompleted = true;
 		});
