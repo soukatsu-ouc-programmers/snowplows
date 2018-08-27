@@ -186,8 +186,9 @@ public class CarMovePlayer : MonoBehaviour {
 			return;
 		}
 
-		// 注記：以下、なんのためにやってるかわからん...
+		//除雪車を前方or後方に移動。キー入力に応じてPositionを変更
 		this.gameObject.transform.Translate(Vector3.forward * this.inputVertical * this.MoveSpeed, Space.Self);
+		//除雪車を回転。キー入力に応じて、オブジェクトのRotationを変更
 		this.gameObject.transform.Rotate(Vector3.up * this.inputHorizontal * this.rotateSpeed, Space.Self);
 
 		if(Input.GetKeyDown(this.keyCodeRestoreFromRollover) == true
