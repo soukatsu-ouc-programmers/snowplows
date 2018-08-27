@@ -11,7 +11,7 @@ public class CarMovePlayer : MonoBehaviour {
 	/// <summary>
 	/// 除雪車の重心
 	/// </summary>
-	static private readonly Vector3 CenterGravity = new Vector3(0f, -3f, 0f);
+	static private readonly Vector3 CenterGravity = new Vector3(0f, -10f, 0f);
 
 	/// <summary>
 	/// 横方向の移動量
