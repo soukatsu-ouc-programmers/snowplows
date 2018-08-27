@@ -16,9 +16,42 @@ public class ResultScene : MonoBehaviour {
 	private Fade fader;
 
 	/// <summary>
+	/// フェードインが完了したかどうか
+	/// </summary>
+	private bool fadeInCompleted;
+
+	/// <summary>
 	/// シーン開始と同時にフェードインします。
 	/// </summary>
 	private void Start() {
+		this.fadeInCompleted = false;
+
+		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
+		this.Invoke("fadeIn", 0.5f);
+	}
+
+	/// <summary>
+	/// キー入力でも次のシーンへ移る
+	/// </summary>
+	public void Update() {
+		if(this.fadeInCompleted == false) {
+			// フェードインが終わっていないときは操作不能にする
+			return;
+		}
+		if(GameObject.Find("BackToTitleButton").GetComponent<Button>().interactable == false) {
+			// ボタンが押せなくなっているときはこちらも操作不能にする
+			return;
+		}
+
+		if(Input.GetKeyDown(KeyCode.Joystick1Button0) == true || Input.GetKeyDown(KeyCode.Return) == true) {
+			this.GoTitle();
+		}
+	}
+
+	/// <summary>
+	/// 遅延処理用：フェードインしてシーン開始
+	/// </summary>
+	private void fadeIn() {
 		this.fader.FadeIn(0, () => {
 			// フェーダーの初期暗転が完了してからマスクオブジェクトを取ってフェードインを開始する
 			GameObject.Find("StartingMask").SetActive(false);
@@ -32,13 +65,22 @@ public class ResultScene : MonoBehaviour {
 	/// 遅延処理用：フェーダー的にはフェードアウトがフェードイン（イミフ）
 	/// </summary>
 	private void FadeIn() {
-		this.fader.FadeOut(1.0f, null);
+		// BGM再生
+		GameObject.Find("Canvas").GetComponent<AudioSource>().Play();
+		this.fader.FadeOut(1.0f, () => {
+			this.fadeInCompleted = true;
+		});
 	}
 
 	/// <summary>
 	/// タイトルに戻ります。
 	/// </summary>
 	public void GoTitle() {
+		if(this.fadeInCompleted == false) {
+			// フェードインが終わっていないときは操作不能にする
+			return;
+		}
+
 		// ボタンを一度押したら押せないようする
 		GameObject.Find("BackToTitleButton").GetComponent<Button>().interactable = false;
 
