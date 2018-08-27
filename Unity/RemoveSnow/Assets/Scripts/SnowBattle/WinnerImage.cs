@@ -35,7 +35,7 @@ public class WinnerImage : MonoBehaviour {
 
 		if(PlayerScore.IsScoreHidden == true) {
 			if(this.winnerPlayerIndex != -1) {
-				Debug.Log("プレイヤー 優劣非表示");
+				// Debug.Log("プレイヤー 優劣非表示");
 
 				this.resetAnimatorTriggers();
 				foreach(var icon in this.playerIcons) {
@@ -59,8 +59,8 @@ public class WinnerImage : MonoBehaviour {
 
 		if(winnerPlayers.Count == 1) {
 			if(this.winnerPlayerIndex != winnerPlayers[0]) {
-				var playerNumber = winnerPlayers[0] + 1;
-				Debug.Log("プレイヤー" + playerNumber + " 優勢");
+				// var playerNumber = winnerPlayers[0] + 1;
+				// Debug.Log("プレイヤー" + playerNumber + " 優勢");
 
 				this.resetAnimatorTriggers();
 				foreach(var icon in this.playerIcons) {
@@ -74,7 +74,7 @@ public class WinnerImage : MonoBehaviour {
 			}
 		} else {
 			if(this.winnerPlayerIndex != -1) {
-				Debug.Log("プレイヤー 拮抗");
+				// Debug.Log("プレイヤー 拮抗");
 
 				this.resetAnimatorTriggers();
 				foreach(var icon in this.playerIcons) {

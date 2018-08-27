@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// プレイヤー除雪車が落下したときに所定の位置で復帰させる処理
@@ -18,6 +19,12 @@ public class Respawn : MonoBehaviour {
 	/// </summary>
 	[SerializeField]
 	private Vector3[] respawnPositions;
+
+	/// <summary>
+	/// プレイヤーごとのペナルティテキストオブジェクト
+	/// </summary>
+	[SerializeField]
+	private GameObject[] playerPenaltyTexts;
 
 	/// <summary>
 	/// このオブジェクトに除雪車が触れたときに発動します。
@@ -46,5 +53,8 @@ public class Respawn : MonoBehaviour {
 		} else {
 			PlayerScore.Scores[index] = 0;
 		}
+		this.playerPenaltyTexts[index].GetComponent<Text>().text = "-" + Respawn.PenaltyScore;
+		this.playerPenaltyTexts[index].GetComponent<Animator>().ResetTrigger("DoPenalty");
+		this.playerPenaltyTexts[index].GetComponent<Animator>().SetTrigger("DoPenalty");
 	}
 }

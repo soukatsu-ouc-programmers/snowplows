@@ -1598,6 +1598,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4918886125257020, guid: 4ba543d19876d7f43b76a57ea898f84a,
     type: 2}
   m_PrefabInternal: {fileID: 59368909}
+--- !u!1 &60133818 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1002944580683442, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 967077041}
 --- !u!1001 &60951940
 Prefab:
   m_ObjectHideFlags: 0
@@ -15279,6 +15284,9 @@ MonoBehaviour:
   respawnPositions:
   - {x: 4, y: 2, z: 2}
   - {x: 21, y: 2, z: 2}
+  playerPenaltyTexts:
+  - {fileID: 60133818}
+  - {fileID: 685723227}
 --- !u!23 &443256709
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25157,6 +25165,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4918886125257020, guid: 4ba543d19876d7f43b76a57ea898f84a,
     type: 2}
   m_PrefabInternal: {fileID: 685003716}
+--- !u!1 &685723227 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1933167273758012, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 967077041}
 --- !u!1001 &686076701
 Prefab:
   m_ObjectHideFlags: 0
@@ -35608,6 +35621,9 @@ MonoBehaviour:
   respawnPositions:
   - {x: 4, y: 2, z: 2}
   - {x: 21, y: 2, z: 2}
+  playerPenaltyTexts:
+  - {fileID: 60133818}
+  - {fileID: 685723227}
 --- !u!23 &971239958
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36270,6 +36286,9 @@ MonoBehaviour:
   respawnPositions:
   - {x: 4, y: 2, z: 2}
   - {x: 21, y: 2, z: 2}
+  playerPenaltyTexts:
+  - {fileID: 60133818}
+  - {fileID: 685723227}
 --- !u!23 &988385142
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62345,6 +62364,9 @@ MonoBehaviour:
   respawnPositions:
   - {x: 4, y: 2, z: 2}
   - {x: 21, y: 2, z: 2}
+  playerPenaltyTexts:
+  - {fileID: 60133818}
+  - {fileID: 685723227}
 --- !u!23 &1633811987
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -74973,6 +74995,9 @@ MonoBehaviour:
   respawnPositions:
   - {x: 4, y: 2, z: 2}
   - {x: 21, y: 2, z: 2}
+  playerPenaltyTexts:
+  - {fileID: 60133818}
+  - {fileID: 685723227}
 --- !u!23 &1955534397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77063,6 +77088,9 @@ MonoBehaviour:
   respawnPositions:
   - {x: 4, y: 2, z: 2}
   - {x: 21, y: 2, z: 2}
+  playerPenaltyTexts:
+  - {fileID: 60133818}
+  - {fileID: 685723227}
 --- !u!23 &2019099009
 MeshRenderer:
   m_ObjectHideFlags: 0

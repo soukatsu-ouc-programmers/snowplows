@@ -176,7 +176,7 @@ public class CarMovePlayer : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// 特殊操作のキー入力
+	/// キー入力をもとにした除雪車に対する動作を行います。
 	/// </summary>
 	public void FixedUpdate() {
 		if(SnowBattleScene.IsStarted == false) {
