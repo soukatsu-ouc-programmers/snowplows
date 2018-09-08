@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// タイマー
 /// </summary>
 public class Timer : MonoBehaviour {
-	
+
 	/// <summary>
 	/// スコアを非表示にする残り秒数
 	/// </summary>
@@ -54,6 +54,11 @@ public class Timer : MonoBehaviour {
 		this.totalTime = this.minute * 60 + this.seconds;
 		this.oldSeconds = 0f;
 		this.timerText = this.GetComponentInChildren<Text>();
+
+		// タイマー設定を読み込む
+		this.minute = SelectTimeScene.TimeMinutes;
+		this.seconds = SelectTimeScene.TimeSeconds;
+
 		this.timerText.text = this.minute.ToString("00") + ":" + ((int)this.seconds).ToString("00");
 	}
 

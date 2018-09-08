@@ -19,6 +19,11 @@ public class CarMovePlayer : MonoBehaviour {
 	static private readonly Vector3 CenterGravity = new Vector3(0f, -10f, 0f);
 
 	/// <summary>
+	/// 横転閾値 eulerAngles/z
+	/// </summary>
+	static private readonly float[] RolloverThreshold = new float[] { 80, 250 };
+
+	/// <summary>
 	/// プレイヤーインデックス
 	/// </summary>
 	[SerializeField]
@@ -72,6 +77,16 @@ public class CarMovePlayer : MonoBehaviour {
 	private GameObject[] effectText;
 
 	/// <summary>
+	/// 横転時に表示するガイドアニメーション
+	/// </summary>
+	private Animator restoreGuideAnimator;
+
+	/// <summary>
+	/// 横転中かどうか
+	/// </summary>
+	private bool isRollover;
+
+	/// <summary>
 	/// スコアを加算できるかどうか
 	/// </summary>
 	public bool canAddScore {
@@ -118,6 +133,12 @@ public class CarMovePlayer : MonoBehaviour {
 		// 除雪車の重心を設定
 		this.carRigidbody = this.GetComponent<Rigidbody>();
 		this.carRigidbody.centerOfMass = CarMovePlayer.CenterGravity;
+
+		// この除雪車に対応する横転ガイドアニメーターをセット
+		var animatorObject = GameObject.Find("Text Guide Restore" + (this.playerIndex + 1));
+		if(animatorObject != null) {
+			this.restoreGuideAnimator = animatorObject.GetComponent<Animator>();
+		}
 	}
 
 	/// <summary>
@@ -152,6 +173,24 @@ public class CarMovePlayer : MonoBehaviour {
 				this.canAddScore = true;
 			}
 
+		}
+
+		// 横転判定
+		if(this.gameObject.transform.localEulerAngles.z >= CarMovePlayer.RolloverThreshold[0]
+		&& this.gameObject.transform.localEulerAngles.z <= CarMovePlayer.RolloverThreshold[1]) {
+			if(this.isRollover == false) {
+				// 横転直後にアニメーションを変更
+				this.isRollover = true;
+				this.restoreGuideAnimator.ResetTrigger("OutOfGuide");
+				this.restoreGuideAnimator.SetTrigger("IntoGuide");
+			}
+		} else {
+			if(this.isRollover == true) {
+				// 横転復帰直後にアニメーションを変更
+				this.isRollover = false;
+				this.restoreGuideAnimator.ResetTrigger("IntoGuide");
+				this.restoreGuideAnimator.SetTrigger("OutOfGuide");
+			}
 		}
 	}
 
@@ -194,8 +233,8 @@ public class CarMovePlayer : MonoBehaviour {
 		if(Input.GetKeyDown(this.keyCodeRestoreFromRollover) == true
 		|| Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button0 + this.playerIndex * JoypadButtonOffset)) == true) {
 			// 一定の閾値を超えたときに横転を復帰する
-			if(this.gameObject.transform.localEulerAngles.z <= 250
-			&& this.gameObject.transform.localEulerAngles.z >= 80) {
+			if(this.gameObject.transform.localEulerAngles.z >= CarMovePlayer.RolloverThreshold[0]
+			&& this.gameObject.transform.localEulerAngles.z <= CarMovePlayer.RolloverThreshold[1]) {
 				this.gameObject.transform.eulerAngles = new Vector3(0f, this.gameObject.transform.localEulerAngles.y, 0f);
 				this.carRigidbody.angularVelocity = Vector3.zero;
 			}

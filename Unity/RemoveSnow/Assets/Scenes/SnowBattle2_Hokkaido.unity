@@ -1600,7 +1600,7 @@ Transform:
   m_PrefabInternal: {fileID: 59368909}
 --- !u!1 &60133818 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1002944580683442, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+  m_PrefabParentObject: {fileID: 1718070837251236, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
     type: 2}
   m_PrefabInternal: {fileID: 967077041}
 --- !u!1001 &60951940
@@ -8052,6 +8052,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: subtitles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4463666309637310, guid: 7306b9b8ac5d565479e3f858f16edd33, type: 2}
       propertyPath: m_LocalPosition.x
       value: 551
@@ -8093,17 +8098,17 @@ Prefab:
         type: 2}
       propertyPath: subtitles.Array.data[0]
       value: 
-      objectReference: {fileID: 917902457}
+      objectReference: {fileID: 250399161}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
       propertyPath: subtitles.Array.data[1]
       value: 
-      objectReference: {fileID: 3006512}
+      objectReference: {fileID: 917902457}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
       propertyPath: subtitles.Array.data[2]
       value: 
-      objectReference: {fileID: 1498252102}
+      objectReference: {fileID: 3006512}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
       propertyPath: seGroup.Array.data[0]
@@ -8139,6 +8144,11 @@ Prefab:
       propertyPath: seGroup.Array.data[6]
       value: 
       objectReference: {fileID: 2094317319}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: subtitles.Array.data[3]
+      value: 
+      objectReference: {fileID: 1498252102}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7306b9b8ac5d565479e3f858f16edd33, type: 2}
   m_IsPrefabParent: 0
@@ -8295,6 +8305,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4918886125257020, guid: 4ba543d19876d7f43b76a57ea898f84a,
     type: 2}
   m_PrefabInternal: {fileID: 248232857}
+--- !u!1 &250399161 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1911630265689864, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 967077041}
 --- !u!1001 &250726335
 Prefab:
   m_ObjectHideFlags: 0

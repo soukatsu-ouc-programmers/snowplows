@@ -42863,15 +42863,20 @@ Prefab:
         type: 2}
       propertyPath: subtitles.Array.data[0]
       value: 
-      objectReference: {fileID: 1285459875}
+      objectReference: {fileID: 2006888055}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
       propertyPath: subtitles.Array.data[1]
       value: 
-      objectReference: {fileID: 1903527615}
+      objectReference: {fileID: 1285459875}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
       propertyPath: subtitles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1903527615}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: subtitles.Array.data[3]
       value: 
       objectReference: {fileID: 1712336178}
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
@@ -64005,6 +64010,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2005812092}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2006888055 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1911630265689864, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    type: 2}
+  m_PrefabInternal: {fileID: 53391497}
 --- !u!1 &2015750839
 GameObject:
   m_ObjectHideFlags: 0

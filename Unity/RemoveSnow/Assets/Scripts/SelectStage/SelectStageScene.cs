@@ -156,6 +156,12 @@ public class SelectStageScene : MonoBehaviour {
 		|| Input.GetKeyDown(KeyCode.Joystick1Button0) == true) {
 			this.StartGame();
 		}
+
+		// 前のシーンへ戻る
+		if(Input.GetKeyDown(KeyCode.Escape) == true
+		|| Input.GetKeyDown(KeyCode.Joystick1Button1) == true) {
+			this.PreviousScene();
+		}
 	}
 
 	/// <summary>
@@ -272,6 +278,28 @@ public class SelectStageScene : MonoBehaviour {
 		}
 
 		this.currentAngle = float.NaN;
+	}
+
+	/// <summary>
+	/// 前のシーンに戻る
+	/// </summary>
+	public void PreviousScene() {
+		if(this.fadeInCompleted == false) {
+			// フェードインが終わっていないときは操作不能にする
+			return;
+		}
+
+		GameObject.Find("CancelSE").GetComponent<AudioSource>().Play();
+
+		// ボタン類一式を無効化
+		foreach(var button in this.buttons) {
+			button.SetActive(false);
+		}
+
+		// フェードアウトしてシーン遷移
+		this.faders[0].FadeIn(1.0f, () => {
+			SceneManager.LoadScene(1);
+		});
 	}
 
 	/// <summary>

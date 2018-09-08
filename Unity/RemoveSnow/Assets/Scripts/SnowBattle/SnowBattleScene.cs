@@ -63,19 +63,16 @@ public class SnowBattleScene : MonoBehaviour {
 
 			this.fader.FadeOut(1.0f, () => {
 				// フェード完了後、Ready-Go表示をして開始する
-				this.StartCoroutine(this.startingSubtitle1());
+				this.StartCoroutine(this.startingSubtitleControllerDescription());
 			});
 		});
 	}
 
 	/// <summary>
-	/// コルーチン：テロップ：Ready？
+	/// コルーチン：操作説明を開始
 	/// </summary>
-	private IEnumerator startingSubtitle1() {
+	private IEnumerator startingSubtitleControllerDescription() {
 		yield return new WaitForEndOfFrame();
-
-		// SE再生
-		this.seGroup[0].Play();
 
 		// iTweenによるアニメーション表示
 		this.subtitles[0].SetActive(true);
@@ -90,7 +87,7 @@ public class SnowBattleScene : MonoBehaviour {
 				"delay", 0.01f,
 				"easeType", iTween.EaseType.easeOutQuint,
 				"oncomplete", new Action<object>((param) => {
-					this.StartCoroutine(this.startingSubtitle2());
+					this.StartCoroutine(this.closingSubtitleControllerDescription());
 				}),
 				"oncompletetarget", this.subtitles[0]
 			)
@@ -98,13 +95,40 @@ public class SnowBattleScene : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// コルーチン：テロップ：GO!
+	/// コルーチン：操作説明を終了
 	/// </summary>
-	private IEnumerator startingSubtitle2() {
-		yield return new WaitForSeconds(2.0f);
+	private IEnumerator closingSubtitleControllerDescription() {
+		// 一定時間経過 or キー入力で次へ
+		float startTime = Time.time;
+		while(Input.anyKeyDown == false && Time.time - startTime <= 5.0f) {
+			yield return null;
+		}
+
+		// iTweenによるアニメーション表示
+		iTween.ScaleTo(
+			this.subtitles[0],
+			iTween.Hash(
+				"x", 0,
+				"y", 1,
+				"z", 1,
+				"time", 0.5f,
+				"easeType", iTween.EaseType.easeOutQuint,
+				"oncomplete", new Action<object>((param) => {
+					this.StartCoroutine(this.startingSubtitleReady());
+				}),
+				"oncompletetarget", this.subtitles[0]
+			)
+		);
+	}
+
+	/// <summary>
+	/// コルーチン：テロップ：Ready？
+	/// </summary>
+	private IEnumerator startingSubtitleReady() {
+		yield return new WaitForEndOfFrame();
 
 		// SE再生
-		this.seGroup[1].Play();
+		this.seGroup[0].Play();
 
 		// iTweenによるアニメーション表示
 		this.subtitles[0].SetActive(false);
@@ -120,9 +144,39 @@ public class SnowBattleScene : MonoBehaviour {
 				"delay", 0.01f,
 				"easeType", iTween.EaseType.easeOutQuint,
 				"oncomplete", new Action<object>((param) => {
-					this.StartCoroutine(this.startingSubtitleClose());
+					this.StartCoroutine(this.startingSubtitleGo());
 				}),
 				"oncompletetarget", this.subtitles[1]
+			)
+		);
+	}
+
+	/// <summary>
+	/// コルーチン：テロップ：GO!
+	/// </summary>
+	private IEnumerator startingSubtitleGo() {
+		yield return new WaitForSeconds(2.0f);
+
+		// SE再生
+		this.seGroup[1].Play();
+
+		// iTweenによるアニメーション表示
+		this.subtitles[1].SetActive(false);
+		this.subtitles[2].SetActive(true);
+		this.subtitles[2].transform.localScale = Vector3.zero;
+		iTween.ScaleTo(
+			this.subtitles[2],
+			iTween.Hash(
+				"x", 1,
+				"y", 1,
+				"z", 1,
+				"time", 0.5f,
+				"delay", 0.01f,
+				"easeType", iTween.EaseType.easeOutQuint,
+				"oncomplete", new Action<object>((param) => {
+					this.StartCoroutine(this.startingSubtitleClose());
+				}),
+				"oncompletetarget", this.subtitles[2]
 			)
 		);
 
@@ -136,7 +190,7 @@ public class SnowBattleScene : MonoBehaviour {
 
 		// iTweenによるアニメーション表示
 		iTween.ScaleTo(
-			this.subtitles[1],
+			this.subtitles[2],
 			iTween.Hash(
 				"x", 0,
 				"y", 0,
@@ -145,12 +199,12 @@ public class SnowBattleScene : MonoBehaviour {
 				"delay", 0.01f,
 				"easeType", iTween.EaseType.easeOutQuint,
 				"oncomplete", new Action<object>((param) => {
-					this.subtitles[1].SetActive(false);
+					this.subtitles[2].SetActive(false);
 
 					// プレイヤー入力を許可
 					SnowBattleScene.IsStarted = true;
 				}),
-				"oncompletetarget", this.subtitles[1]
+				"oncompletetarget", this.subtitles[2]
 			)
 		);
 	}
@@ -166,10 +220,10 @@ public class SnowBattleScene : MonoBehaviour {
 		this.Invoke("delayFinishVoice", 1.5f);
 
 		// iTweenによるアニメーション表示
-		this.subtitles[2].SetActive(true);
-		this.subtitles[2].transform.localScale = Vector3.zero;
+		this.subtitles[3].SetActive(true);
+		this.subtitles[3].transform.localScale = Vector3.zero;
 		iTween.ScaleTo(
-			this.subtitles[2],
+			this.subtitles[3],
 			iTween.Hash(
 				"x", 1,
 				"y", 1,
@@ -181,7 +235,7 @@ public class SnowBattleScene : MonoBehaviour {
 					// Finish表示を解除して次のシーンへ遷移
 					this.StartCoroutine(this.endingSubtitleClose());
 				}),
-				"oncompletetarget", this.subtitles[1]
+				"oncompletetarget", this.subtitles[3]
 			)
 		);
 	}
