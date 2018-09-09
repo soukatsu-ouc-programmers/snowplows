@@ -71554,17 +71554,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4150776464784230, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1435800434681942, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
+    - target: {fileID: 1538170749747576, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1435800434681942, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
