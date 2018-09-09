@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// 対戦ゲームの進行管理
@@ -49,6 +50,19 @@ public class SnowBattleScene : MonoBehaviour {
 		// TODO: プレイヤーの人数が増える場合はここを修正する必要がある
 		PlayerScore.Init(2);
 		SnowBattleScene.IsStarted = false;
+
+		// バトルモードでUI表示を切り替える
+		switch(SelectModeScene.BattleMode) {
+			case SelectModeScene.BattleModes.ShavedIce:
+				// TODO: HPメーターを無効化
+
+				break;
+
+			case SelectModeScene.BattleModes.SnowFight:
+				// TODO: 点数表示を無効化
+
+				break;
+		}
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);

@@ -15,6 +15,12 @@ public class UIScore : MonoBehaviour {
 	private int playerIndex;
 
 	/// <summary>
+	/// HPメーター
+	/// </summary>
+	[SerializeField]
+	private Slider HPMeter;
+
+	/// <summary>
 	/// 最初に文字色を設定
 	/// </summary>
 	public void Start() {
