@@ -56,8 +56,8 @@ public class Timer : MonoBehaviour {
 		this.timerText = this.GetComponentInChildren<Text>();
 
 		// タイマー設定を読み込む
-		this.minute = SelectTimeScene.TimeMinutes;
-		this.seconds = SelectTimeScene.TimeSeconds;
+		this.minute = SelectModeScene.TimeMinutes;
+		this.seconds = SelectModeScene.TimeSeconds;
 
 		this.timerText.text = this.minute.ToString("00") + ":" + ((int)this.seconds).ToString("00");
 	}
