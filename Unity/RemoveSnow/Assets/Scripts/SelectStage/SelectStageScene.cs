@@ -70,6 +70,13 @@ public class SelectStageScene : MonoBehaviour {
 	private GameObject[] buttons;
 
 	/// <summary>
+	/// ゲームルールのテキスト群
+	/// </summary>
+	[SerializeField]
+	[Multiline]
+	private string[] ruleTexts;
+
+	/// <summary>
 	/// ステージインデックスに応じたシーン番号
 	/// </summary>
 	[SerializeField]
@@ -89,6 +96,9 @@ public class SelectStageScene : MonoBehaviour {
 	public void Start() {
 		this.fadeInCompleted = false;
 		this.currentAngle = float.NaN;
+
+		// ゲームルールを選択
+		GameObject.Find("TextRule").GetComponent<Text>().text = this.ruleTexts[(int)SelectModeScene.BattleMode];
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);

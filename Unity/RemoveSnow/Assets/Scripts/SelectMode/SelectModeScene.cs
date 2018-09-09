@@ -42,7 +42,7 @@ public class SelectModeScene : MonoBehaviour {
 	/// ドロップダウンリスト：プレイヤー人数
 	/// </summary>
 	[SerializeField]
-	private Dropdown peoplesDropdown;
+	private Dropdown playersDropdown;
 
 	/// <summary>
 	/// ドロップダウンリスト：バトルモード
@@ -133,15 +133,15 @@ public class SelectModeScene : MonoBehaviour {
 	/// <summary>
 	/// 現在選択中のプレイヤー人数
 	/// </summary>
-	static public int Peoples {
+	static public int Players {
 		get {
-			return SelectModeScene._peoples;
+			return SelectModeScene._players;
 		}
 		private set {
-			SelectModeScene._peoples = value;
+			SelectModeScene._players = value;
 		}
 	}
-	static private int _peoples = 2;
+	static private int _players = 2;
 
 	/// <summary>
 	/// 現在選択中のバトルモード
@@ -170,13 +170,13 @@ public class SelectModeScene : MonoBehaviour {
 	public void Start() {
 		this.fadeInCompleted = false;
 		this.timerDropdown.value = SelectModeScene.selectedTimeIndex;
-		this.peoplesDropdown.value = SelectModeScene.selectedPeopleIndex;
+		this.playersDropdown.value = SelectModeScene.selectedPeopleIndex;
 		this.battleModeDropdown.value = SelectModeScene.selectedBattleModeIndex;
 
 		// すべてのドロップダウン設定項目をまとめる
 		this.dropdowns = new Dropdown[] {
 			this.timerDropdown,
-			this.peoplesDropdown,
+			this.playersDropdown,
 			this.battleModeDropdown,
 		};
 		this.settingIndex = 0;
@@ -251,15 +251,15 @@ public class SelectModeScene : MonoBehaviour {
 			this.NextScene();
 		}
 	}
-
+	
 	/// <summary>
 	/// 制限時間が直接選択されたときの処理
 	/// </summary>
-	/// <param name="dropdown">変更されたドロップダウンリストのオブジェクト</param>
-	public void OnTimeChanged(Dropdown dropdown) {
+	/// <param name="value">選択後の値</param>
+	public void OnTimeChanged(int value) {
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
-			SelectModeScene.selectedTimeIndex = dropdown.value;
+			SelectModeScene.selectedTimeIndex = value;
 			// Debug.Log("制限時間変更 -> 選択index: " + dropdown.value);
 		}
 	}
@@ -267,24 +267,38 @@ public class SelectModeScene : MonoBehaviour {
 	/// <summary>
 	/// プレイヤー人数が直接選択されたときの処理
 	/// </summary>
-	/// <param name="dropdown">変更されたドロップダウンリストのオブジェクト</param>
-	public void OnPeoplesChanged(Dropdown dropdown) {
+	/// <param name="value">選択後の値</param>
+	public void OnPlayersChanged(int value) {
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
-			SelectModeScene.selectedPeopleIndex = dropdown.value;
+			SelectModeScene.selectedPeopleIndex = value;
 			// Debug.Log("プレイヤー人数変更 -> 選択index: " + dropdown.value);
+
+			// 一人なのにサバイバルモードのときはバトルモードを変える
+			if(SelectModeScene.selectedPeopleIndex == 0
+			&& SelectModeScene.selectedBattleModeIndex == (int)BattleModes.SnowFight) {
+				Debug.Log("バトルモード強制変更");
+				this.battleModeDropdown.value = (int)BattleModes.ShavedIce;
+			}
 		}
 	}
 
 	/// <summary>
 	/// バトルモードが直接選択されたときの処理
 	/// </summary>
-	/// <param name="dropdown">変更されたドロップダウンリストのオブジェクト</param>
-	public void OnBattleModeChanged(Dropdown dropdown) {
+	/// <param name="value">選択後の値</param>
+	public void OnBattleModeChanged(int value) {
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
-			SelectModeScene.selectedBattleModeIndex = dropdown.value;
+			SelectModeScene.selectedBattleModeIndex = value;
 			// Debug.Log("バトルモード変更 -> 選択index: " + dropdown.value);
+
+			// サバイバルモードなのに一人のときは人数を変える
+			if(SelectModeScene.selectedPeopleIndex == 0
+			&& SelectModeScene.selectedBattleModeIndex == (int)BattleModes.SnowFight) {
+				Debug.Log("プレイヤー人数強制変更");
+				this.playersDropdown.value = 1;
+			}
 		}
 	}
 
@@ -346,8 +360,8 @@ public class SelectModeScene : MonoBehaviour {
 		// Debug.Log("制限時間 = " + SelectTimeScene.TimeMinutes + ":" + SelectTimeScene.TimeSeconds.ToString("00"));
 
 		// 現在選択されているプレイヤー人数で確定する
-		SelectModeScene.Peoples = SelectModeScene.selectedPeopleIndex + 1;
-		// Debug.Log("プレイヤー人数 = " + SelectModeScene.Peoples);
+		SelectModeScene.Players = SelectModeScene.selectedPeopleIndex + 1;
+		// Debug.Log("プレイヤー人数 = " + SelectModeScene.Players);
 
 		// 現在選択されているゲームモードで確定する
 		SelectModeScene.BattleMode = (BattleModes)SelectModeScene.selectedBattleModeIndex;

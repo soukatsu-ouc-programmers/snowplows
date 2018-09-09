@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 67501233}
   m_Layer: 5
-  m_Name: 02_Peoples
+  m_Name: 02_Players
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2119,10 +2119,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883751306}
         m_MethodName: OnTimeChanged
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 877932068}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Dropdown, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2589,10 +2589,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1883751306}
         m_MethodName: OnBattleModeChanged
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 1067493280}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Dropdown, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4354,7 +4354,7 @@ GameObject:
   - component: {fileID: 1777545523}
   - component: {fileID: 1777545522}
   m_Layer: 5
-  m_Name: PeoplesDropbown
+  m_Name: PlayersDropbown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4433,11 +4433,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1883751306}
-        m_MethodName: OnPeoplesChanged
-        m_Mode: 2
+        m_MethodName: OnPlayersChanged
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 1777545522}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Dropdown, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4744,7 +4744,7 @@ MonoBehaviour:
   - {fileID: 442321329}
   - {fileID: 1415193288}
   timerDropdown: {fileID: 877932068}
-  peoplesDropdown: {fileID: 1777545522}
+  playersDropdown: {fileID: 1777545522}
   battleModeDropdown: {fileID: 1067493280}
 --- !u!1 &1917234388
 GameObject:

@@ -1460,6 +1460,9 @@ MonoBehaviour:
   - {fileID: 679546047}
   - {fileID: 2086772200}
   - {fileID: 1046153790}
+  ruleTexts:
+  - "\u9664\u96EA\u3057\u3066\u304B\u304D\u6C37\u3092\u4F5C\u308D\u3046\uFF01\n\u3088\u308A\u591A\u304F\u306E\u96EA\u3092\u304B\u304D\u96C6\u3081\u305F\u65B9\u304C\u52DD\u3061\u3060\uFF01"
+  - "\u53D6\u308A\u8FBC\u3093\u3060\u96EA\u3092\u76F8\u624B\u306B\u3076\u3064\u3051\u3088\u3046\uFF01\n\u5148\u306B\u76F8\u624B\u306E\u9664\u96EA\u8ECA\u3092\u7834\u58CA\u3057\u305F\u65B9\u304C\u52DD\u3061\u3060\uFF01"
   stageSceneIDs: 0300000004000000
 --- !u!212 &1418990526
 SpriteRenderer:
@@ -2353,8 +2356,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 172.12, y: -143.27}
-  m_SizeDelta: {x: 295.97, y: 73.45}
+  m_AnchoredPosition: {x: 160.05, y: -143.27}
+  m_SizeDelta: {x: 320.11, y: 73.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896110782
 MonoBehaviour:
