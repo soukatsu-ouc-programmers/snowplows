@@ -22,15 +22,23 @@ public class ResultScore : MonoBehaviour {
 		}
 
 		// 点数をプレイヤーカラーに応じて色分けして表示
-		for(int i = 0; i < PlayerScore.Scores.Length; i++) {
+		for(int i = 0; i < SelectModeScene.Players; i++) {
 			textScoreLabel.text += "Player " + (i + 1) + "   Score";
 			this.GetComponent<Text>().text += PlayerScore.Scores[i].ToString("<color=" + PlayerScore.PlayerColorNames[i] + ">0</color>");
 
-			if(i < PlayerScore.PlayerIndexMap.Count - 1) {
+			if(i < SelectModeScene.Players - 1) {
 				// 末尾以外は改行を付ける
 				this.GetComponent<Text>().text += "\r\n";
 				textScoreLabel.text += "\r\n";
 			}
+		}
+
+		if(SelectModeScene.Players == 1) {
+			// 一人用のときは前回までのハイスコアを表示
+			textScoreLabel.text += "\r\n";
+			textScoreLabel.text += "High   Score";
+			this.GetComponent<Text>().text += "\r\n";
+			this.GetComponent<Text>().text += "<color=blue>" + PlayerScore.HighScore + "</color>";
 		}
 	}
 

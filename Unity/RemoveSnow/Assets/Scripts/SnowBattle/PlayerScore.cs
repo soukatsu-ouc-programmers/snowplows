@@ -30,6 +30,11 @@ public class PlayerScore : MonoBehaviour {
 	static public bool IsScoreHidden;
 
 	/// <summary>
+	/// 前回までのハイスコアの記録
+	/// </summary>
+	static public int HighScore;
+
+	/// <summary>
 	/// プレイヤーのTagとインデックスを対応付けます。
 	/// </summary>
 	static public readonly Dictionary<string, int> PlayerIndexMap = new Dictionary<string, int>() {
@@ -64,6 +69,9 @@ public class PlayerScore : MonoBehaviour {
 		for(int i = 0; i < PlayerScore.HPs.Length; i++) {
 			PlayerScore.HPs[i] = PlayerScore.MaxHP;
 		}
+
+		// 前回までのハイスコアの記録を読み込む
+		PlayerScore.HighScore = PlayerPrefs.GetInt("HighScore-" + SelectModeScene.TimeMinutes + ":" + SelectModeScene.TimeSeconds, 0);
 	}
 
 	/// <summary>

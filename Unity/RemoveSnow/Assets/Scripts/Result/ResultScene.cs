@@ -35,13 +35,18 @@ public class ResultScene : MonoBehaviour {
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);
 
-		// 一人用のときはアングルを変更する
 		if(SelectModeScene.Players == 1) {
+			// 一人用のときはアングルを変更する
 			this.mainCamera.transform.rotation = Quaternion.Euler(
 				this.mainCamera.transform.rotation.eulerAngles.x,
 				-13.31f,
 				this.mainCamera.transform.rotation.eulerAngles.z
 			);
+
+			if(PlayerScore.HighScore < PlayerScore.Scores[0]) {
+				// ハイスコア更新
+				PlayerPrefs.SetInt("HighScore-" + SelectModeScene.TimeMinutes + ":" + SelectModeScene.TimeSeconds, PlayerScore.Scores[0]);
+			}
 		}
 	}
 

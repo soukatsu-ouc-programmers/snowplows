@@ -174,9 +174,14 @@ public class SelectModeScene : MonoBehaviour {
 	/// </summary>
 	public void Start() {
 		this.fadeInCompleted = false;
+
+		// 選択状態を初期化 or 前回のものを引き継ぐ
 		this.timerDropdown.value = SelectModeScene.selectedTimeIndex;
+		this.OnTimeChanged(this.timerDropdown.value);
 		this.playersDropdown.value = SelectModeScene.selectedPeopleIndex;
+		this.OnPlayersChanged(this.playersDropdown.value);
 		this.battleModeDropdown.value = SelectModeScene.selectedBattleModeIndex;
+		this.OnBattleModeChanged(this.battleModeDropdown.value);
 
 		// すべてのドロップダウン設定項目をまとめる
 		this.dropdowns = new Dropdown[] {
@@ -256,7 +261,7 @@ public class SelectModeScene : MonoBehaviour {
 			this.NextScene();
 		}
 	}
-	
+
 	/// <summary>
 	/// 制限時間が直接選択されたときの処理
 	/// </summary>
@@ -266,8 +271,13 @@ public class SelectModeScene : MonoBehaviour {
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			SelectModeScene.selectedTimeIndex = value;
-			// Debug.Log("制限時間変更 -> 選択index: " + dropdown.value);
 		}
+
+		// ハイスコアを読み込む
+		int highScore = PlayerPrefs.GetInt("HighScore-" + this.getTimeMinutes() + ":" + this.getTimeSeconds(), 0);
+		GameObject.Find("HighScore").GetComponent<Text>().text = highScore.ToString();
+
+		// Debug.Log("制限時間変更 -> 選択index: " + value);
 	}
 
 	/// <summary>
@@ -279,15 +289,25 @@ public class SelectModeScene : MonoBehaviour {
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			SelectModeScene.selectedPeopleIndex = value;
-			// Debug.Log("プレイヤー人数変更 -> 選択index: " + dropdown.value);
-
-			// 一人なのにサバイバルモードのときはバトルモードを変える
-			if(SelectModeScene.selectedPeopleIndex == 0
-			&& SelectModeScene.selectedBattleModeIndex == (int)BattleModes.SnowFight) {
-				Debug.Log("バトルモード強制変更");
-				this.battleModeDropdown.value = (int)BattleModes.ShavedIce;
-			}
 		}
+
+		if(SelectModeScene.selectedPeopleIndex == 0
+		&& SelectModeScene.selectedBattleModeIndex == (int)BattleModes.SnowFight) {
+			// 一人なのにサバイバルモードのときはバトルモードを変える
+			Debug.Log("バトルモード強制変更");
+			this.battleModeDropdown.value = (int)BattleModes.ShavedIce;
+		}
+
+		var highScorePanel = GameObject.Find("HighScorePanel");
+		if(SelectModeScene.selectedPeopleIndex == 0) {
+			// 一人用のときはハイスコアを表示
+			highScorePanel.transform.localScale = Vector3.one;
+		} else {
+			// 複数人のときはハイスコアを非表示
+			highScorePanel.transform.localScale = Vector3.zero;
+		}
+
+		// Debug.Log("プレイヤー人数変更 -> 選択index: " + value);
 	}
 
 	/// <summary>
@@ -299,15 +319,16 @@ public class SelectModeScene : MonoBehaviour {
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			SelectModeScene.selectedBattleModeIndex = value;
-			// Debug.Log("バトルモード変更 -> 選択index: " + dropdown.value);
-
-			// サバイバルモードなのに一人のときは人数を変える
-			if(SelectModeScene.selectedPeopleIndex == 0
-			&& SelectModeScene.selectedBattleModeIndex == (int)BattleModes.SnowFight) {
-				Debug.Log("プレイヤー人数強制変更");
-				this.playersDropdown.value = 1;
-			}
 		}
+
+		// サバイバルモードなのに一人のときは人数を変える
+		if(SelectModeScene.selectedPeopleIndex == 0
+		&& SelectModeScene.selectedBattleModeIndex == (int)BattleModes.SnowFight) {
+			Debug.Log("プレイヤー人数強制変更");
+			this.playersDropdown.value = 1;
+		}
+
+		// Debug.Log("バトルモード変更 -> 選択index: " + value);
 	}
 
 	/// <summary>
@@ -334,37 +355,9 @@ public class SelectModeScene : MonoBehaviour {
 		}
 
 		// 現在選択されている制限時間で確定する
-		switch(SelectModeScene.selectedTimeIndex) {
-			case 0:
-				SelectModeScene.TimeMinutes = 1;
-				SelectModeScene.TimeSeconds = 30;
-				break;
+		SelectModeScene.TimeMinutes = this.getTimeMinutes();
+		SelectModeScene.TimeSeconds = this.getTimeSeconds();
 
-			case 1:
-				SelectModeScene.TimeMinutes = 2;
-				SelectModeScene.TimeSeconds = 0;
-				break;
-
-			case 2:
-				SelectModeScene.TimeMinutes = 3;
-				SelectModeScene.TimeSeconds = 0;
-				break;
-
-			case 3:
-				SelectModeScene.TimeMinutes = 4;
-				SelectModeScene.TimeSeconds = 0;
-				break;
-
-			case 4:
-				SelectModeScene.TimeMinutes = 5;
-				SelectModeScene.TimeSeconds = 0;
-				break;
-
-			default:
-				SelectModeScene.TimeMinutes = 1;
-				SelectModeScene.TimeSeconds = 0;
-				break;
-		}
 		// Debug.Log("制限時間 = " + SelectTimeScene.TimeMinutes + ":" + SelectTimeScene.TimeSeconds.ToString("00"));
 
 		// 現在選択されているプレイヤー人数で確定する
@@ -379,6 +372,48 @@ public class SelectModeScene : MonoBehaviour {
 		this.fader.FadeIn(1.0f, () => {
 			SceneManager.LoadScene(2);
 		});
+	}
+
+	/// <summary>
+	/// 現在選択されている制限時間の "分" を取得します。
+	/// </summary>
+	/// <returns>分数</returns>
+	private int getTimeMinutes() {
+		switch(SelectModeScene.selectedTimeIndex) {
+			case 0:
+				return 1;
+			case 1:
+				return 2;
+			case 2:
+				return 3;
+			case 3:
+				return 4;
+			case 4:
+				return 5;
+			default:
+				return 1;
+		}
+	}
+
+	/// <summary>
+	/// 現在選択されている制限時間の "秒" を取得します。
+	/// </summary>
+	/// <returns>秒数</returns>
+	private int getTimeSeconds() {
+		switch(SelectModeScene.selectedTimeIndex) {
+			case 0:
+				return 30;
+			case 1:
+				return 0;
+			case 2:
+				return 0;
+			case 3:
+				return 0;
+			case 4:
+				return 0;
+			default:
+				return 0;
+		}
 	}
 
 }

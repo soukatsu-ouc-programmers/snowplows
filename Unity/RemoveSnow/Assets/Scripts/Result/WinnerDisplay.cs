@@ -22,8 +22,13 @@ public class WinnerDisplay : MonoBehaviour {
 		var shavedIcesTransform = GameObject.Find("ShavedIces").transform;
 
 		if(SelectModeScene.Players == 1) {
-			// 一人用のときは何も表示しない
-			this.GetComponent<Text>().text = "";
+			// 一人用のときはハイスコアのときのみテロップ表示を行う
+			if(PlayerScore.HighScore < PlayerScore.Scores[0]) {
+				this.GetComponent<Text>().text = "NEW  RECORD !";
+				this.GetComponent<Text>().color = PlayerScore.PlayerColors[0];
+			} else {
+				this.GetComponent<Text>().text = "";
+			}
 
 			// 1P以外の表示をすべて削除
 			for(int i = 1; i < shavedIcesTransform.childCount; i++) {
