@@ -66,6 +66,20 @@ public class SnowBattleScene : MonoBehaviour {
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);
+
+		//1Pのとき、2Pを消し、カメラを切り替える処理。
+		if (SelectModeScene.Players == 1) {
+			Destroy (GameObject.Find ("Snowplow2P"));
+			GameObject.Find ("CameraPlayer1P").SetActive (false);
+			GameObject.Find ("CameraFor1P").SetActive (true);
+			GameObject.Find ("Text Score Player2").SetActive (false);
+			GameObject.Find ("Image player2").SetActive (false);
+		}
+
+		//2Pのとき、1P用のカメラを消す。
+		if (SelectModeScene.Players == 2) {
+			GameObject.Find ("CameraFor1P").SetActive (false);
+		}
 	}
 
 	/// <summary>
