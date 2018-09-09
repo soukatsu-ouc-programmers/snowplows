@@ -8,10 +8,21 @@ using UnityEngine;
 public class PlayerScore : MonoBehaviour {
 
 	/// <summary>
+	/// サバイバルモードでの最大HP
+	/// </summary>
+	public const int MaxHP = 1000;
+
+	/// <summary>
 	/// プレイヤーのスコア
 	/// SnowShrinkの雪縮小判定とともに加算されます。
 	/// </summary>
 	static public int[] Scores = new int[0];
+
+	/// <summary>
+	/// プレイヤーのHP
+	/// サバイバルモードの体力判定に使用し、いずれかのプレイヤーがゼロになったらゲーム終了となります。
+	/// </summary>
+	static public int[] HPs = new int[0];
 
 	/// <summary>
 	/// プレイヤーのスコアを ???? 表示にするかどうか
@@ -49,6 +60,10 @@ public class PlayerScore : MonoBehaviour {
 	static public void Init(int playerCount) {
 		PlayerScore.IsScoreHidden = false;
 		PlayerScore.Scores = new int[playerCount];
+		PlayerScore.HPs = new int[playerCount];
+		for(int i = 0; i < PlayerScore.HPs.Length; i++) {
+			PlayerScore.HPs[i] = PlayerScore.MaxHP;
+		}
 	}
 
 	/// <summary>

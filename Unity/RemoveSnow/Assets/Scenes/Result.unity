@@ -912,6 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74d5e976b4257d4bafef4145adcac3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 632922309}
   fader: {fileID: 1124986734}
 --- !u!4 &758611126
 Transform:

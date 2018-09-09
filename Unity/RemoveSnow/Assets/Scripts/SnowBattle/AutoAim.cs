@@ -17,6 +17,11 @@ public class AutoAim : MonoBehaviour {
 	/// Tagをもとに狙い先を決めます。
 	/// </summary>
 	public void Start() {
+		if(SelectModeScene.Players <= 1) {
+			// 一人用ではただの飾りと化す
+			return;
+		}
+		
 		// TODO: 複数プレイヤーになったときに誰をターゲットにするか？
 		switch(this.gameObject.transform.parent.tag) {
 			case "Player":
@@ -32,6 +37,11 @@ public class AutoAim : MonoBehaviour {
 	/// 毎フレームで向きを補正します。
 	/// </summary>
 	public void Update() {
+		if(SelectModeScene.Players <= 1) {
+			// 一人用ではただの飾りと化す
+			return;
+		}
+
 		var targetPosition = this.target.transform.position;
 		var targetRotation = Quaternion.LookRotation(targetPosition - this.gameObject.transform.position);
 		this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetRotation, Time.deltaTime * 3);

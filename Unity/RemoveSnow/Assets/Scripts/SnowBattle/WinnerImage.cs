@@ -33,22 +33,36 @@ public class WinnerImage : MonoBehaviour {
 	public void Update() {
 		// 注意：Animatorのトリガーセットするとき、他のトリガーをすべて解除しないとタイミングがずれておかしなことになる
 
-		if(PlayerScore.IsScoreHidden == true) {
-			if(this.winnerPlayerIndex != -1) {
-				// Debug.Log("プレイヤー 優劣非表示");
+		if(SelectModeScene.BattleMode == SelectModeScene.BattleModes.ShavedIce) {
+			if(PlayerScore.IsScoreHidden == true) {
+				if(this.winnerPlayerIndex != -1) {
+					// Debug.Log("プレイヤー 優劣非表示");
 
-				this.resetAnimatorTriggers();
-				foreach(var icon in this.playerIcons) {
-					icon.GetComponent<Animator>().SetTrigger("Nutral");
+					this.resetAnimatorTriggers();
+					foreach(var icon in this.playerIcons) {
+						icon.GetComponent<Animator>().SetTrigger("Nutral");
+					}
+					this.winnerPlayerIndex = -1;
 				}
-				this.winnerPlayerIndex = -1;
-			}
 
-			return;
+				return;
+			}
 		}
 
 		// 暫定トップのプレイヤーを取得
-		var scores = new List<int>(PlayerScore.Scores);
+		List<int> scores = null;
+		switch(SelectModeScene.BattleMode) {
+			case SelectModeScene.BattleModes.ShavedIce:
+				scores = new List<int>(PlayerScore.Scores);
+				break;
+
+			case SelectModeScene.BattleModes.SnowFight:
+				scores = new List<int>(PlayerScore.HPs);
+				break;
+
+			default:
+				return;
+		}
 		var winnerPlayers = scores.Select((value, index) => new {
 			index,
 			value

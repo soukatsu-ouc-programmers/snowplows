@@ -35442,11 +35442,41 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1338190973}
+    - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1338190973}
     - target: {fileID: 114169718812565986, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
         type: 2}
       propertyPath: ZeroTimerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1338190973}
+    - target: {fileID: 224371301657991178, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224371301657991178, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224395777701002322, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224395777701002322, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
   m_IsPrefabParent: 0
@@ -79974,7 +80004,7 @@ AudioSource:
   m_PrefabInternal: {fileID: 2094317316}
 --- !u!82 &2094317319 stripped
 AudioSource:
-  m_PrefabParentObject: {fileID: 82013490643793898, guid: e5cd3767b93a7834bb160003199a831d,
+  m_PrefabParentObject: {fileID: 82029251505607426, guid: e5cd3767b93a7834bb160003199a831d,
     type: 2}
   m_PrefabInternal: {fileID: 2094317316}
 --- !u!1001 &2102332834

@@ -10,6 +10,12 @@ using UnityEngine.UI;
 public class ResultScene : MonoBehaviour {
 
 	/// <summary>
+	/// メインカメラ
+	/// </summary>
+	[SerializeField]
+	private Camera mainCamera;
+
+	/// <summary>
 	/// フェーダー
 	/// </summary>
 	[SerializeField]
@@ -28,6 +34,15 @@ public class ResultScene : MonoBehaviour {
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);
+
+		// 一人用のときはアングルを変更する
+		if(SelectModeScene.Players == 1) {
+			this.mainCamera.transform.rotation = Quaternion.Euler(
+				this.mainCamera.transform.rotation.eulerAngles.x,
+				-13.31f,
+				this.mainCamera.transform.rotation.eulerAngles.z
+			);
+		}
 	}
 
 	/// <summary>

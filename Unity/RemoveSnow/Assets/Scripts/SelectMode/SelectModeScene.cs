@@ -10,6 +10,11 @@ using UnityEngine.UI;
 public class SelectModeScene : MonoBehaviour {
 
 	/// <summary>
+	/// 最大プレイヤー人数
+	/// </summary>
+	public const int MaxPlayerCount = 2;
+
+	/// <summary>
 	/// フェードインが完了したかどうか
 	/// </summary>
 	private bool fadeInCompleted;
@@ -257,6 +262,7 @@ public class SelectModeScene : MonoBehaviour {
 	/// </summary>
 	/// <param name="value">選択後の値</param>
 	public void OnTimeChanged(int value) {
+		EventSystem.current.SetSelectedGameObject(null);
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			SelectModeScene.selectedTimeIndex = value;
@@ -269,6 +275,7 @@ public class SelectModeScene : MonoBehaviour {
 	/// </summary>
 	/// <param name="value">選択後の値</param>
 	public void OnPlayersChanged(int value) {
+		EventSystem.current.SetSelectedGameObject(null);
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			SelectModeScene.selectedPeopleIndex = value;
@@ -288,6 +295,7 @@ public class SelectModeScene : MonoBehaviour {
 	/// </summary>
 	/// <param name="value">選択後の値</param>
 	public void OnBattleModeChanged(int value) {
+		EventSystem.current.SetSelectedGameObject(null);
 		if(this.fadeInCompleted == true) {
 			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			SelectModeScene.selectedBattleModeIndex = value;

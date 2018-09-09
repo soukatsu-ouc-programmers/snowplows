@@ -48,11 +48,27 @@ public class Respawn : MonoBehaviour {
 		other.gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
 
 		// 得点ペナルティを与える
-		if(PlayerScore.Scores[index] >= Respawn.PenaltyScore) {
-			PlayerScore.Scores[index] -= Respawn.PenaltyScore;
-		} else {
-			PlayerScore.Scores[index] = 0;
+		switch(SelectModeScene.BattleMode) {
+			case SelectModeScene.BattleModes.ShavedIce:
+				// 除雪モードは減点
+				if(PlayerScore.Scores[index] >= Respawn.PenaltyScore) {
+					PlayerScore.Scores[index] -= Respawn.PenaltyScore;
+				} else {
+					PlayerScore.Scores[index] = 0;
+				}
+				break;
+
+			case SelectModeScene.BattleModes.SnowFight:
+				// サバイバルモードはHP減算
+				if(PlayerScore.HPs[index] >= Respawn.PenaltyScore) {
+					PlayerScore.HPs[index] -= Respawn.PenaltyScore;
+				} else {
+					PlayerScore.HPs[index] = 0;
+				}
+				break;
 		}
+
+		// アニメーション表示
 		this.playerPenaltyTexts[index].GetComponent<Text>().text = "-" + Respawn.PenaltyScore;
 		this.playerPenaltyTexts[index].GetComponent<Animator>().ResetTrigger("DoPenalty");
 		this.playerPenaltyTexts[index].GetComponent<Animator>().SetTrigger("DoPenalty");

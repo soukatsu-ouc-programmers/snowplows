@@ -19,8 +19,34 @@ public class WinnerDisplay : MonoBehaviour {
 	/// 勝敗結果を表示
 	/// </summary>
 	public void Start() {
+		var shavedIcesTransform = GameObject.Find("ShavedIces").transform;
+
+		if(SelectModeScene.Players == 1) {
+			// 一人用のときは何も表示しない
+			this.GetComponent<Text>().text = "";
+
+			// 1P以外の表示をすべて削除
+			for(int i = 1; i < shavedIcesTransform.childCount; i++) {
+				GameObject.Find(PlayerScore.PlayerColorNames[i] + "ShavedIce").SetActive(false);
+				GameObject.Find("Snowplow" + (i + 1) + "P").SetActive(false);
+			}
+			return;
+		}
+
 		// 勝敗を出力
-		var scores = new List<int>(PlayerScore.Scores);
+		List<int> scores = null;
+		switch(SelectModeScene.BattleMode) {
+			case SelectModeScene.BattleModes.ShavedIce:
+				scores = new List<int>(PlayerScore.Scores);
+				break;
+
+			case SelectModeScene.BattleModes.SnowFight:
+				scores = new List<int>(PlayerScore.HPs);
+				break;
+
+			default:
+				return;
+		}
 		var winnerPlayers = scores.Select((value, index) => new {
 			index,
 			value
@@ -36,7 +62,6 @@ public class WinnerDisplay : MonoBehaviour {
 			this.GetComponent<Text>().color = PlayerScore.PlayerColors[winnerPlayers[0]];
 
 			// 敗者のかき氷を非表示にする
-			var shavedIcesTransform = GameObject.Find("ShavedIces").transform;
 			for(int i = 0; i < shavedIcesTransform.childCount; i++) {
 				var child = shavedIcesTransform.GetChild(i);
 				if(child.name.IndexOf(PlayerScore.PlayerColorNames[winnerPlayers[0]]) == -1) {
@@ -49,7 +74,6 @@ public class WinnerDisplay : MonoBehaviour {
 			this.GetComponent<Text>().color = WinnerDisplay.DrawTextColor;
 
 			// トップでないかき氷を非表示にする
-			var shavedIcesTransform = GameObject.Find("ShavedIces").transform;
 			for(int i = 0; i < shavedIcesTransform.childCount; i++) {
 				if(i >= PlayerScore.Scores.Length) {
 					break;

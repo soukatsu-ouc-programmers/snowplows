@@ -13,10 +13,15 @@ public class ResultScore : MonoBehaviour {
 	/// </summary>
 	public void Start() {
 		var textScoreLabel = GameObject.Find("TextScoreLabel").GetComponent<Text>();
-
-		// 点数をプレイヤーカラーに応じて色分けして表示
 		this.GetComponent<Text>().text = "";
 		textScoreLabel.text = "";
+
+		if(SelectModeScene.BattleMode == SelectModeScene.BattleModes.SnowFight) {
+			// サバイバルモードのときは何も表示しない
+			return;
+		}
+
+		// 点数をプレイヤーカラーに応じて色分けして表示
 		for(int i = 0; i < PlayerScore.Scores.Length; i++) {
 			textScoreLabel.text += "Player " + (i + 1) + "   Score";
 			this.GetComponent<Text>().text += PlayerScore.Scores[i].ToString("<color=" + PlayerScore.PlayerColorNames[i] + ">0</color>");

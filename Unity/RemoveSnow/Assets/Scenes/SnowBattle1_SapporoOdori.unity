@@ -19278,6 +19278,46 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1105762811302854, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673395332070686, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
+      propertyPath: m_TagString
+      value: MeterUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310469627739478, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
+      propertyPath: m_TagString
+      value: MeterUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662450876772164, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
+      propertyPath: m_TagString
+      value: ScoreUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693127425477710, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
+      propertyPath: m_TagString
+      value: ScoreUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 148409347}
+    - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 148409347}
+    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndTimer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
   m_IsPrefabParent: 0

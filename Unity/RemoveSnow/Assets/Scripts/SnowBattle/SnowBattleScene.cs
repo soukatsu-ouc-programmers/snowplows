@@ -47,20 +47,25 @@ public class SnowBattleScene : MonoBehaviour {
 	/// </summary>
 	public void Start() {
 		// 初期化
-		// TODO: プレイヤーの人数が増える場合はここを修正する必要がある
-		PlayerScore.Init(2);
+		PlayerScore.Init(SelectModeScene.Players);
 		SnowBattleScene.IsStarted = false;
 
 		// バトルモードでUI表示を切り替える
 		switch(SelectModeScene.BattleMode) {
 			case SelectModeScene.BattleModes.ShavedIce:
-				// TODO: HPメーターを無効化
-
+				// HPメーターを無効化
+				var meters = GameObject.FindGameObjectsWithTag("MeterUI");
+				foreach(var meter in meters) {
+					meter.SetActive(false);
+				}
 				break;
 
 			case SelectModeScene.BattleModes.SnowFight:
-				// TODO: 点数表示を無効化
-
+				// 点数表示を無効化
+				var scores = GameObject.FindGameObjectsWithTag("ScoreUI");
+				foreach(var score in scores) {
+					score.GetComponent<Text>().enabled = false;
+				}
 				break;
 		}
 
