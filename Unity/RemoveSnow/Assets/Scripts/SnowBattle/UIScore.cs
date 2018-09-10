@@ -75,6 +75,7 @@ public class UIScore : MonoBehaviour {
 				}
 
 				// HPがゼロになったときのイベントを発動させる
+				// TODO: ３人以上でプレイできるようにする場合、残されたプレイヤーがあと１人or０人になっているかどうかを確認する必要がある
 				this.ZeroHPEvent.Invoke();
 				this.zeroHPEventDone = true;
 				break;

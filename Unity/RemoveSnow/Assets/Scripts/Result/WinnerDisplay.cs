@@ -52,6 +52,15 @@ public class WinnerDisplay : MonoBehaviour {
 			default:
 				return;
 		}
+
+		for(int i = 0; i < scores.Count; i++) {
+			if(scores[i] < 0) {
+				// スコアがマイナスになっているものは補正
+				scores[i] = 0;
+			}
+		}
+
+		// 勝敗判定
 		var winnerPlayers = scores.Select((value, index) => new {
 			index,
 			value
