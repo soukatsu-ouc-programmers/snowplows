@@ -107,7 +107,7 @@ public class ResultScene : MonoBehaviour {
 		// 暗転してからシーン遷移
 		GameObject.Find("Decide").GetComponent<AudioSource>().Play();
 		this.fader.FadeIn(1.0f, () => {
-			SceneManager.LoadScene(0);
+			SceneManager.LoadScene((int)SceneIDs.Title);
 		});
 	}
 

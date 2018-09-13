@@ -370,7 +370,7 @@ public class SelectModeScene : MonoBehaviour {
 
 		// フェードアウトしてシーン遷移
 		this.fader.FadeIn(1.0f, () => {
-			SceneManager.LoadScene(2);
+			SceneManager.LoadScene((int)SceneIDs.SelectStage);
 		});
 	}
 

@@ -76,7 +76,7 @@ public class TitleScene : MonoBehaviour {
 		// フェードアウトしてシーン遷移
 		this.fader.FadeIn(1.0f, () => {
 			this.StartCoroutine(this.SEWait(1.0f, () => {
-				SceneManager.LoadScene(1);
+				SceneManager.LoadScene((int)SceneIDs.SelectMode);
 			}));
 		});
 	}

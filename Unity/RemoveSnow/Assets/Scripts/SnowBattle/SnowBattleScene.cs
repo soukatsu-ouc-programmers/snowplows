@@ -27,13 +27,7 @@ public class SnowBattleScene : MonoBehaviour {
 	/// </summary>
 	[SerializeField]
 	private AudioSource[] seGroup;
-
-	/// <summary>
-	/// リザルトシーン番号
-	/// </summary>
-	[SerializeField]
-	private int resultSceneID;
-
+	
 	/// <summary>
 	/// ゲームが開始したかどうか
 	/// </summary>
@@ -287,7 +281,7 @@ public class SnowBattleScene : MonoBehaviour {
 		yield return new WaitForSeconds(3.0f);
 
 		this.fader.FadeIn(1.0f, () => {
-			SceneManager.LoadScene(this.resultSceneID);
+			SceneManager.LoadScene((int)SceneIDs.Result);
 		});
 	}
 

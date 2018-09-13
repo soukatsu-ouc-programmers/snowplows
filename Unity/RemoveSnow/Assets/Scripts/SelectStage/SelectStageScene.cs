@@ -75,13 +75,7 @@ public class SelectStageScene : MonoBehaviour {
 	[SerializeField]
 	[Multiline]
 	private string[] ruleTexts;
-
-	/// <summary>
-	/// ステージインデックスに応じたシーン番号
-	/// </summary>
-	[SerializeField]
-	private int[] stageSceneIDs;
-
+	
 	/// <summary>
 	/// 現在選択中のステージインデックス
 	/// </summary>
@@ -308,7 +302,7 @@ public class SelectStageScene : MonoBehaviour {
 
 		// フェードアウトしてシーン遷移
 		this.faders[0].FadeIn(1.0f, () => {
-			SceneManager.LoadScene(1);
+			SceneManager.LoadScene((int)SceneIDs.SelectMode);
 		});
 	}
 
@@ -330,7 +324,7 @@ public class SelectStageScene : MonoBehaviour {
 
 		// フェードアウトしてシーン遷移
 		this.faders[1].FadeIn(1.0f, () => {
-			SceneManager.LoadScene(this.stageSceneIDs[SelectStageScene.StageIndex]);
+			SceneManager.LoadScene((int)SceneIDs.SnowBattle1_SapporoOdori + SelectStageScene.StageIndex);
 		});
 	}
 
