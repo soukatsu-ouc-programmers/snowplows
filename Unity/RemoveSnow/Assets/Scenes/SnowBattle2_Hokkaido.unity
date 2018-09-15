@@ -5776,27 +5776,32 @@ Prefab:
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeXMin
-      value: -1
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeXMax
-      value: 39
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeZMin
-      value: -22
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeZMax
-      value: 16
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: positionY
-      value: 1
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
+        type: 2}
+      propertyPath: positionYOffset
+      value: 5.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb8069cd4e0e61a4cb85f9ee10c516d3, type: 2}

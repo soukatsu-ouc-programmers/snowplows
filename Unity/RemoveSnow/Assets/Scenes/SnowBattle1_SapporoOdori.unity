@@ -18814,21 +18814,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 148409347}
+    - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 148409347}
     - target: {fileID: 114169718812565986, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
         type: 2}
       propertyPath: ZeroTimerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 148409347}
-    - target: {fileID: 224395777701002322, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224395777701002322, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224371301657991178, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -18839,45 +18839,15 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1105762811302854, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 224395777701002322, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+        type: 2}
+      propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1673395332070686, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-      propertyPath: m_TagString
-      value: MeterUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1310469627739478, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-      propertyPath: m_TagString
-      value: MeterUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1662450876772164, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-      propertyPath: m_TagString
-      value: ScoreUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1693127425477710, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
-      propertyPath: m_TagString
-      value: ScoreUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    - target: {fileID: 224395777701002322, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
         type: 2}
-      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 148409347}
-    - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
-        type: 2}
-      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndTimer
-      objectReference: {fileID: 0}
-    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
-        type: 2}
-      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 148409347}
-    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
-        type: 2}
-      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndTimer
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f, type: 2}
@@ -52395,27 +52365,27 @@ Prefab:
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeXMin
-      value: -139
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeXMax
-      value: -97
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeZMin
-      value: -32
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: rangeZMax
-      value: -26
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114465021047388654, guid: cb8069cd4e0e61a4cb85f9ee10c516d3,
         type: 2}
       propertyPath: positionY
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb8069cd4e0e61a4cb85f9ee10c516d3, type: 2}

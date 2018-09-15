@@ -215,7 +215,7 @@ MonoBehaviour:
   inputVertical: 0
   MoveSpeed: 0.1
   rotateSpeed: 2
-  jumpPower: 2
+  jumpPower: 5
   isOnGround: 0
   isReverse: 0
   effectText:

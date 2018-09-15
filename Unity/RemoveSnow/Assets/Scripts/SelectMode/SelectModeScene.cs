@@ -56,12 +56,18 @@ public class SelectModeScene : MonoBehaviour {
 	private Dropdown battleModeDropdown;
 
 	/// <summary>
+	/// ドロップダウンリスト：アイテムモード
+	/// </summary>
+	[SerializeField]
+	private Dropdown itemModeDropdown;
+
+	/// <summary>
 	/// すべてのドロップダウン設定項目
 	/// </summary>
 	private Dropdown[] dropdowns;
 
 	/// <summary>
-	/// 現在設定中の設定項目の番号（0=制限時間・1=人数・2=モード）
+	/// 現在設定中の設定項目の番号（0=制限時間・1=人数・2=バトルモード・3=アイテムモード）
 	/// これに該当する設定項目がキーボードから変更できるようにします。
 	/// </summary>
 	private int settingIndex {
@@ -108,6 +114,11 @@ public class SelectModeScene : MonoBehaviour {
 	/// 選択されたバトルモードのインデックス
 	/// </summary>
 	static private int selectedBattleModeIndex = 0;
+
+	/// <summary>
+	/// 選択されたアイテムモードのインデックス
+	/// </summary>
+	static private int selectedItemModeIndex = 0;
 
 	/// <summary>
 	/// 現在選択中の制限時間：分
@@ -170,6 +181,28 @@ public class SelectModeScene : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// 現在選択中のアイテムモード
+	/// </summary>
+	static public ItemModes ItemMode {
+		get {
+			return SelectModeScene._itemMode;
+		}
+		set {
+			SelectModeScene._itemMode = value;
+		}
+	}
+	static private ItemModes _itemMode = ItemModes.Normal;
+
+	/// <summary>
+	/// アイテムモード
+	/// </summary>
+	public enum ItemModes {
+		Normal,     // 通常の時間間隔
+		Chaos,      // 短い時間間隔
+		None,       // 出てこない
+	}
+
+	/// <summary>
 	/// 初期化
 	/// </summary>
 	public void Start() {
@@ -182,12 +215,15 @@ public class SelectModeScene : MonoBehaviour {
 		this.OnPlayersChanged(this.playersDropdown.value);
 		this.battleModeDropdown.value = SelectModeScene.selectedBattleModeIndex;
 		this.OnBattleModeChanged(this.battleModeDropdown.value);
+		this.itemModeDropdown.value = SelectModeScene.selectedItemModeIndex;
+		this.OnItemModeChanged(this.itemModeDropdown.value);
 
 		// すべてのドロップダウン設定項目をまとめる
 		this.dropdowns = new Dropdown[] {
 			this.timerDropdown,
 			this.playersDropdown,
 			this.battleModeDropdown,
+			this.itemModeDropdown,
 		};
 		this.settingIndex = 0;
 
@@ -298,6 +334,13 @@ public class SelectModeScene : MonoBehaviour {
 			this.battleModeDropdown.value = (int)BattleModes.ShavedIce;
 		}
 
+		if(SelectModeScene.selectedPeopleIndex == 0
+		&& SelectModeScene.selectedItemModeIndex != (int)ItemModes.Normal) {
+			// 一人なのに通常モード以外のときはアイテムモードを変える
+			Debug.Log("アイテムモード強制変更");
+			this.itemModeDropdown.value = (int)ItemModes.Normal;
+		}
+
 		var highScorePanel = GameObject.Find("HighScorePanel");
 		if(SelectModeScene.selectedPeopleIndex == 0) {
 			// 一人用のときはハイスコアを表示
@@ -329,6 +372,27 @@ public class SelectModeScene : MonoBehaviour {
 		}
 
 		// Debug.Log("バトルモード変更 -> 選択index: " + value);
+	}
+
+	/// <summary>
+	/// アイテムモードが直接選択されたときの処理
+	/// </summary>
+	/// <param name="value">選択後の値</param>
+	public void OnItemModeChanged(int value) {
+		EventSystem.current.SetSelectedGameObject(null);
+		if(this.fadeInCompleted == true) {
+			GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
+			SelectModeScene.selectedItemModeIndex = value;
+		}
+
+		// 一人モードのときはNORMAL以外選択できないようにする
+		if(SelectModeScene.selectedPeopleIndex == 0
+		&& SelectModeScene.selectedItemModeIndex != (int)ItemModes.Normal) {
+			Debug.Log("プレイヤー人数強制変更");
+			this.playersDropdown.value = 1;
+		}
+
+		// Debug.Log("アイテムモード変更 -> 選択index: " + value);
 	}
 
 	/// <summary>
@@ -364,9 +428,13 @@ public class SelectModeScene : MonoBehaviour {
 		SelectModeScene.Players = SelectModeScene.selectedPeopleIndex + 1;
 		// Debug.Log("プレイヤー人数 = " + SelectModeScene.Players);
 
-		// 現在選択されているゲームモードで確定する
+		// 現在選択されているバトルモードで確定する
 		SelectModeScene.BattleMode = (BattleModes)SelectModeScene.selectedBattleModeIndex;
-		// Debug.Log("ゲームモード = " + SelectModeScene.BattleMode);
+		// Debug.Log("バトルモード = " + SelectModeScene.BattleMode);
+
+		// 現在選択されているアイテムモードで確定する
+		SelectModeScene.ItemMode = (ItemModes)SelectModeScene.selectedItemModeIndex;
+		// Debug.Log("アイテムモード = " + SelectModeScene.ItemMode);
 
 		// フェードアウトしてシーン遷移
 		this.fader.FadeIn(1.0f, () => {

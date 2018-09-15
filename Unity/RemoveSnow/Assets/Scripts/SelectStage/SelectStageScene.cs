@@ -12,12 +12,7 @@ public class SelectStageScene : MonoBehaviour {
 	/// 一周する角度
 	/// </summary>
 	public const int AllRoundAngle = 360;
-
-	/// <summary>
-	/// ステージの数
-	/// </summary>
-	public const int StageCount = 2;
-
+	
 	/// <summary>
 	/// １フレーム当たりの回転角度
 	/// </summary>
@@ -192,10 +187,10 @@ public class SelectStageScene : MonoBehaviour {
 	private IEnumerator changeStageLeft() {
 		StageIndex -= 1;
 		if(StageIndex < 0) {
-			StageIndex = StageCount - 1;
+			StageIndex = this.stageNames.Length - 1;
 		}
 
-		for(this.currentAngle = 0; this.currentAngle > -AllRoundAngle / StageCount; this.currentAngle -= AndleDelta) {
+		for(this.currentAngle = 0; this.currentAngle > -AllRoundAngle / this.stageNames.Length; this.currentAngle -= AndleDelta) {
 			this.transform.Rotate(new Vector3(0, -AndleDelta, 0));
 
 			// ステージ個別のオブジェクトは常に正面を向く
@@ -249,11 +244,11 @@ public class SelectStageScene : MonoBehaviour {
 	/// </summary>
 	private IEnumerator changeStageRight() {
 		StageIndex += 1;
-		if(StageIndex >= StageCount) {
+		if(StageIndex >= this.stageNames.Length) {
 			StageIndex = 0;
 		}
 
-		for(this.currentAngle = 0; this.currentAngle < AllRoundAngle / StageCount; this.currentAngle += AndleDelta) {
+		for(this.currentAngle = 0; this.currentAngle < AllRoundAngle / this.stageNames.Length; this.currentAngle += AndleDelta) {
 			this.transform.Rotate(new Vector3(0, AndleDelta, 0));
 
 			// ステージ個別のオブジェクトは常に正面を向く

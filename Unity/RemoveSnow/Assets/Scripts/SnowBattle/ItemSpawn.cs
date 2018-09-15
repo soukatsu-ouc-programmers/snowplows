@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -8,15 +9,26 @@ using UnityEngine;
 public class ItemSpawn : MonoBehaviour {
 
 	/// <summary>
-	/// 初回配置をするまでの秒数
+	/// 初回配置をするまでの秒数（通常モード）
 	/// Ready-Goの時間も含まれます。
 	/// </summary>
-	public const float FirstDelayTimeSeconds = 10.0f;
+	public const float FirstDelayTimeSecondsNormal = 10.0f;
 
 	/// <summary>
-	/// 次の配置をするまでの秒数
+	/// 初回配置をするまでの秒数（カオスモード）
+	/// Ready-Goの時間も含まれます。
 	/// </summary>
-	public const float NextDelayTimeSeconds = 10.0f;
+	public const float FirstDelayTimeSecondsChaos = 1.0f;
+
+	/// <summary>
+	/// 次の配置をするまでの秒数（通常モード）
+	/// </summary>
+	public const float NextDelayTimeSecondsNormal = 10.0f;
+
+	/// <summary>
+	/// 次の配置をするまでの秒数（カオスモード）
+	/// </summary>
+	public const float NextDelayTimeSecondsChaos = 1.0f;
 
 	/// <summary>
 	/// 出現させるアイテム。
@@ -25,40 +37,55 @@ public class ItemSpawn : MonoBehaviour {
 	private GameObject[] items;
 
 	/// <summary>
-	/// 出現範囲のX座標最小値
+	/// 出現範囲のX座標最小値（ローカル座標系）
 	/// </summary>
 	[SerializeField]
 	private float rangeXMin;
 
 	/// <summary>
-	/// 出現範囲のX座標最大値
+	/// 出現範囲のX座標最大値（ローカル座標系）
 	/// </summary>
 	[SerializeField]
 	private float rangeXMax;
 
 	/// <summary>
-	/// 出現Y座標
+	/// 出現最大Y座標（ローカル座標系）
 	/// </summary>
 	[SerializeField]
 	private float positionY;
 
 	/// <summary>
-	/// 出現範囲のZ座標最小値
+	/// 出現Y座標オフセット
+	/// </summary>
+	[SerializeField]
+	private float positionYOffset;
+
+	/// <summary>
+	/// 出現範囲のZ座標最小値（ローカル座標系）
 	/// </summary>
 	[SerializeField]
 	private float rangeZMin;
 
 	/// <summary>
-	/// 出現範囲のZ座標最大値
+	/// 出現範囲のZ座標最大値（ローカル座標系）
 	/// </summary>
 	[SerializeField]
 	private float rangeZMax;
-	
+
 	/// <summary>
 	/// アイテム自動生成をスタート
 	/// </summary>
 	public void Start() {
-		this.InvokeRepeating("itemGenerate", ItemSpawn.FirstDelayTimeSeconds, ItemSpawn.NextDelayTimeSeconds);
+		// モードに応じて生成間隔を変える
+		switch(SelectModeScene.ItemMode) {
+			case SelectModeScene.ItemModes.Normal:
+				this.InvokeRepeating("itemGenerate", ItemSpawn.FirstDelayTimeSecondsNormal, ItemSpawn.NextDelayTimeSecondsNormal);
+				break;
+
+			case SelectModeScene.ItemModes.Chaos:
+				this.InvokeRepeating("itemGenerate", ItemSpawn.FirstDelayTimeSecondsChaos, ItemSpawn.NextDelayTimeSecondsChaos);
+				break;
+		}
 	}
 
 	/// <summary>
@@ -67,17 +94,36 @@ public class ItemSpawn : MonoBehaviour {
 	private void itemGenerate() {
 		Physics.queriesHitTriggers = false;
 
-		// 配置できるまでやり直し続ける
-		while(true) {
+		// 配置できるまでやり直し続ける <- 2018.09.15: 限度有りにしました
+		for(int i = 0; i < int.MaxValue; i++) {
 			var itemX = Random.Range(this.rangeXMin, this.rangeXMax);
 			var itemZ = Random.Range(this.rangeZMin, this.rangeZMax);
 			var itemNumber = Random.Range(0, this.items.Length);
-			var itemPosition = new Vector3(itemX, this.positionY, itemZ);
 			var parent = this.gameObject.transform;
 
-			if(Physics.Raycast(itemPosition, -Vector3.up) == true) {
+			// 配置可能な場所＝所定のY座標から下に着地点があること
+			RaycastHit hit;
+			Ray ray = new Ray(parent.TransformPoint(new Vector3(itemX, this.positionY, itemZ)), Vector3.down);
+			if(Physics.Raycast(ray, out hit, Mathf.Abs(this.positionY) * 2.0f, -1, QueryTriggerInteraction.Ignore) == true) {
 				// 配置可能な場所なら配置して終了する
-				Object.Instantiate(this.items[itemNumber], itemPosition, Quaternion.identity, parent);
+				var topObject = hit.transform;
+				if(topObject.gameObject.tag != "Snow") {
+					// 雪の上以外には配置しない
+					continue;
+				}
+
+				// アイテム生成
+				var newObject = Object.Instantiate(this.items[itemNumber], Vector3.zero, Quaternion.identity, parent);
+
+				// Local座標系でいじる
+				var itemPosition = new Vector3(
+					itemX,
+					topObject.transform.localPosition.y + this.positionYOffset,
+					itemZ
+				);
+				Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 100f);  // 当たり判定の検査を可視化
+				// Debug.Log("アイテム配置先: " + itemPosition);
+				newObject.transform.localPosition = itemPosition;
 				break;
 			}
 		}
