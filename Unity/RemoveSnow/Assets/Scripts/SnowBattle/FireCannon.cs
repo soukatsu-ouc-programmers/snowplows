@@ -37,7 +37,7 @@ public class FireCannon : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// 初期化処理
+	/// 射撃処理
 	/// </summary>
 	public void FixedUpdate() {
 		if(this.isFireBullet == true) {
