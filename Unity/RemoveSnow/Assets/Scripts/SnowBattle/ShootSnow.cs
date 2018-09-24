@@ -27,6 +27,12 @@ public class ShootSnow: MonoBehaviour {
 	private ParticleSystem snowParticles;
 
 	/// <summary>
+	/// 雪玉を発射するプレイヤー
+	/// </summary>
+	[SerializeField]
+	private int playerIndex;
+
+	/// <summary>
 	/// 初期化処理
 	/// </summary>
 	public void Start() {
@@ -40,7 +46,7 @@ public class ShootSnow: MonoBehaviour {
 	/// </summary>
 	public void FixedUpdate() {
 		
-		remainSnow = PlayerScore.Scores [0];
+		remainSnow = PlayerScore.Scores [playerIndex];
 
 		if (remainSnow <= 0) {
 			return;
@@ -55,7 +61,7 @@ public class ShootSnow: MonoBehaviour {
 
 			//雪玉（Particle）の際の処理
 			snowParticles.Emit(1);
-			PlayerScore.Scores [0]--;
+			PlayerScore.Scores [playerIndex]--;
 
 		}
 

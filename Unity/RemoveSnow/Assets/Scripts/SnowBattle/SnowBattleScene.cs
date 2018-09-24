@@ -37,6 +37,14 @@ public class SnowBattleScene : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// 除雪車のプレファブのリスト。
+	/// 0,1 = 通常の除雪車
+	/// 2,3 = ロータリー除雪車
+	/// </summary>
+	[SerializeField]
+	private GameObject[] snowplows;
+
+	/// <summary>
 	/// シーン開始と同時にフェードインします。
 	/// </summary>
 	public void Start() {
@@ -44,22 +52,29 @@ public class SnowBattleScene : MonoBehaviour {
 		PlayerScore.Init(SelectModeScene.Players);
 		SnowBattleScene.IsStarted = false;
 
-		// バトルモードでUI表示を切り替える
+		//バトルモードによる設定
+		// バトルモードでUI表示、除雪車の種類を切り替える
 		switch(SelectModeScene.BattleMode) {
 			case SelectModeScene.BattleModes.ShavedIce:
 				// HPメーターを無効化
-				var meters = GameObject.FindGameObjectsWithTag("MeterUI");
-				foreach(var meter in meters) {
-					meter.SetActive(false);
+				var meters = GameObject.FindGameObjectsWithTag ("MeterUI");
+				foreach (var meter in meters) {
+					meter.SetActive (false);
 				}
+				//通常の除雪車を配置
+				Instantiate (this.snowplows [0]);
+				Instantiate (this.snowplows [1]);
 				break;
 
 			case SelectModeScene.BattleModes.SnowFight:
 				// 点数表示を無効化
-				var scores = GameObject.FindGameObjectsWithTag("ScoreUI");
-				foreach(var score in scores) {
-					score.GetComponent<Text>().enabled = false;
+				var scores = GameObject.FindGameObjectsWithTag ("ScoreUI");
+				foreach (var score in scores) {
+					score.GetComponent<Text> ().enabled = false;
 				}
+				//ロータリー除雪車を配置
+				Instantiate (snowplows [2]);
+				Instantiate (snowplows [3]);
 				break;
 		}
 

@@ -33,7 +33,7 @@ public class SnowCollision : MonoBehaviour {
 		}
 
 			// ダメージを与える
-			PlayerScore.HPs[playerIndex] -= Bullet.PenaltyDamage;
+		PlayerScore.HPs[playerIndex] -= SnowCollision.SnowDamege;
 
 
 

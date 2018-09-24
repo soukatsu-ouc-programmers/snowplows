@@ -65,4 +65,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  resultSceneID: 5
+  snowplows:
+  - {fileID: 1435800434681942, guid: dab3e8860bd5525449a380e3fc2fa143, type: 2}
+  - {fileID: 1494055357558444, guid: c3c72471e29d23f44af4a55a297f4016, type: 2}
+  - {fileID: 1610413645592458, guid: 205a2786454bb4e45b49c5d4b1702cc3, type: 2}
+  - {fileID: 1723106119225878, guid: 171b7d620307ec34181a49cc562b7c88, type: 2}
