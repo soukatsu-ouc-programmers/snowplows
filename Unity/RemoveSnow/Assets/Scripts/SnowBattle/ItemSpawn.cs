@@ -103,7 +103,7 @@ public class ItemSpawn : MonoBehaviour {
 
 			//サバイバルモードの場合、BigBullが出ないようにする
 			if (SelectModeScene.BattleMode == SelectModeScene.BattleModes.SnowFight) {
-				itemNumber = Random.Range (0, this.items.Length-1);
+				items[3] = (GameObject)Resources.Load ("Prefabs/HealingBox");
 			}
 
 			var parent = this.gameObject.transform;

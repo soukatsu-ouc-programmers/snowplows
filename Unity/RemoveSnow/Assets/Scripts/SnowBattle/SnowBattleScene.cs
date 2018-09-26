@@ -37,6 +37,14 @@ public class SnowBattleScene : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// 除雪車の初期位置
+	/// 0 = 1P
+	/// 1 = 2P
+	/// </summary>
+	[SerializeField]
+	private GameObject[] spawnPoint;
+
+	/// <summary>
 	/// 除雪車のプレファブのリスト。
 	/// 0,1 = 通常の除雪車
 	/// 2,3 = ロータリー除雪車
@@ -55,15 +63,15 @@ public class SnowBattleScene : MonoBehaviour {
 		//バトルモードによる設定
 		// バトルモードでUI表示、除雪車の種類を切り替える
 		switch(SelectModeScene.BattleMode) {
-			case SelectModeScene.BattleModes.ShavedIce:
+		case SelectModeScene.BattleModes.ShavedIce:
 				// HPメーターを無効化
 				var meters = GameObject.FindGameObjectsWithTag ("MeterUI");
 				foreach (var meter in meters) {
 					meter.SetActive (false);
 				}
 				//通常の除雪車を配置
-				Instantiate (this.snowplows [0]);
-				Instantiate (this.snowplows [1]);
+				Instantiate (this.snowplows [0], this.spawnPoint [0].transform.position, this.spawnPoint[0].transform.rotation);
+				Instantiate (this.snowplows [1], this.spawnPoint [1].transform.position, this.spawnPoint[1].transform.rotation);
 				break;
 
 			case SelectModeScene.BattleModes.SnowFight:
@@ -73,8 +81,8 @@ public class SnowBattleScene : MonoBehaviour {
 					score.GetComponent<Text> ().enabled = false;
 				}
 				//ロータリー除雪車を配置
-				Instantiate (snowplows [2]);
-				Instantiate (snowplows [3]);
+				Instantiate (snowplows [2], this.spawnPoint[0].transform.position,this.spawnPoint[0].transform.rotation);
+				Instantiate (snowplows [3], this.spawnPoint[1].transform.position,this.spawnPoint[1].transform.rotation);
 				break;
 		}
 

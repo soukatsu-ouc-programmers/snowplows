@@ -280,6 +280,10 @@ public class CarMovePlayer : MonoBehaviour {
 				effectTextIndex = 3;
 				GameObject.Find("SEGroup").transform.Find("ItemPuzzle").GetComponent<AudioSource>().Play();
 				break;
+			case "Heal":
+				effectTextIndex = 4;
+				GameObject.Find ("SEGroup").transform.Find ("Item").GetComponent<AudioSource> ().Play ();
+				break;
 		}
 
 		if(effectTextIndex != -1) {

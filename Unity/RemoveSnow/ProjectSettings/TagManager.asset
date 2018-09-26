@@ -17,6 +17,7 @@ TagManager:
   - Puzzle
   - MeterUI
   - ScoreUI
+  - Heal
   layers:
   - Default
   - TransparentFX
