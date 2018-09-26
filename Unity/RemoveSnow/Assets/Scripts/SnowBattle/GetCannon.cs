@@ -25,7 +25,12 @@ public class GetCannon : MonoBehaviour {
 
 			// プレイヤーの所定の場所に大砲をくっつける
 			player = other.gameObject;
-			Object.Instantiate(this.playerCannons[playerIndex], player.transform.position, player.transform.rotation, parent);
+			//ロータリー除雪車のときにつける位置を変更する
+			if (other.gameObject.name.IndexOf ("RotarySnowplow") == 0) {
+				Object.Instantiate (this.playerCannons [playerIndex],this.transform.position , player.transform.rotation, parent);
+			} else {
+				Object.Instantiate (this.playerCannons [playerIndex], player.transform.position, player.transform.rotation, parent);
+			}
 			Object.Destroy(this.gameObject);
 		}
 	}

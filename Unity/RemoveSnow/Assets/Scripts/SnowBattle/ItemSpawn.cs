@@ -32,6 +32,7 @@ public class ItemSpawn : MonoBehaviour {
 
 	/// <summary>
 	/// 出現させるアイテム。
+	/// 一番最後にBigBullを入れてください。
 	/// </summary>
 	[SerializeField]
 	private GameObject[] items;
@@ -98,7 +99,13 @@ public class ItemSpawn : MonoBehaviour {
 		for(int i = 0; i < int.MaxValue; i++) {
 			var itemX = Random.Range(this.rangeXMin, this.rangeXMax);
 			var itemZ = Random.Range(this.rangeZMin, this.rangeZMax);
-			var itemNumber = Random.Range(0, this.items.Length);
+			var itemNumber = Random.Range (0, this.items.Length);
+
+			//サバイバルモードの場合、BigBullが出ないようにする
+			if (SelectModeScene.BattleMode == SelectModeScene.BattleModes.SnowFight) {
+				itemNumber = Random.Range (0, this.items.Length-1);
+			}
+
 			var parent = this.gameObject.transform;
 
 			// 配置可能な場所＝所定のY座標から下に着地点があること

@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 23313377474005980}
   - component: {fileID: 54835715037135592}
   - component: {fileID: 64349475201074574}
+  - component: {fileID: 114080290314101976}
   - component: {fileID: 114327519292791542}
   - component: {fileID: 114459558349367274}
   m_Layer: 0
@@ -489,6 +490,17 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1807102847497964}
   m_Enabled: 1
+--- !u!114 &114080290314101976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610413645592458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b8e79ff5679f84da288d73d53591f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114327519292791542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -529,6 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snowBall: {fileID: 1716119696798388, guid: 4996c34c0fc22a44683815672f1c9e62, type: 2}
+  playerIndex: 0
 --- !u!114 &114989605863386948
 MonoBehaviour:
   m_ObjectHideFlags: 1

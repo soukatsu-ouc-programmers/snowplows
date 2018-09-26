@@ -32,9 +32,10 @@ public class Bullet : MonoBehaviour {
 	/// 初期化処理
 	/// </summary>
 	public void Start() {
-		this.gameObject.transform.parent = null;
+		this.playerIndex = PlayerScore.PlayerIndexMap [this.transform.parent.parent.parent.gameObject.tag];
 		this.StartCoroutine(this.destroyBullets());
 		this.GetComponent<Rigidbody>().AddForce(this.transform.forward * this.speed, ForceMode.VelocityChange);
+		this.gameObject.transform.parent = null;
 	}
 
 	/// <summary>
