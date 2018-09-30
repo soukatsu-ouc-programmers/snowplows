@@ -259,30 +259,26 @@ public class CarMovePlayer : MonoBehaviour {
 			return;
 		}
 
-		int effectTextIndex = -1;
+		int effectTextIndex = EffectText.GetItemColorIndex(other.gameObject.tag);
 		switch(other.gameObject.tag) {
 			case "Turbo":
-				effectTextIndex = 0;
 				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
 				break;
 
 			case "Cannon":
-				effectTextIndex = 1;
 				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
 				break;
 
 			case "BigBull":
-				effectTextIndex = 2;
 				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
 				break;
 
 			case "Puzzle":
-				effectTextIndex = 3;
 				GameObject.Find("SEGroup").transform.Find("ItemPuzzle").GetComponent<AudioSource>().Play();
 				break;
+
 			case "Heal":
-				effectTextIndex = 4;
-				GameObject.Find ("SEGroup").transform.Find ("Item").GetComponent<AudioSource> ().Play ();
+				GameObject.Find("SEGroup").transform.Find("Item").GetComponent<AudioSource>().Play();
 				break;
 		}
 

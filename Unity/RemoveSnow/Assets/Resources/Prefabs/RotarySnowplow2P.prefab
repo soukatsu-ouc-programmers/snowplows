@@ -545,7 +545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9074034d509356d49bca9f3860a9deaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snowBall: {fileID: 1716119696798388, guid: 4996c34c0fc22a44683815672f1c9e62, type: 2}
   playerIndex: 1
 --- !u!124 &124659834786992244
 Behaviour:

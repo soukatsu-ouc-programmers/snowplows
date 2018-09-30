@@ -913,6 +913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 632922309}
+  mainAudioListener: {fileID: 632922308}
   fader: {fileID: 1124986734}
 --- !u!4 &758611126
 Transform:

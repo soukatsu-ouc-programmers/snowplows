@@ -24633,7 +24633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807584621}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: SpawnPositions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42306,6 +42306,21 @@ Prefab:
       propertyPath: spawnPoint.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: spawnPositions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: snowplowsNormal.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: snowplowsSurvival.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4463666309637310, guid: 7306b9b8ac5d565479e3f858f16edd33, type: 2}
       propertyPath: m_LocalPosition.x
       value: 551
@@ -42408,6 +42423,40 @@ Prefab:
       propertyPath: spawnPoint.Array.data[1]
       value: 
       objectReference: {fileID: 1106263473}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: spawnPositions.Array.data[0]
+      value: 
+      objectReference: {fileID: 2013560000}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: spawnPositions.Array.data[1]
+      value: 
+      objectReference: {fileID: 1106263473}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: snowplowsNormal.Array.data[0]
+      value: 
+      objectReference: {fileID: 1435800434681942, guid: dab3e8860bd5525449a380e3fc2fa143,
+        type: 2}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: snowplowsNormal.Array.data[1]
+      value: 
+      objectReference: {fileID: 1494055357558444, guid: c3c72471e29d23f44af4a55a297f4016,
+        type: 2}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: snowplowsSurvival.Array.data[0]
+      value: 
+      objectReference: {fileID: 1610413645592458, guid: 205a2786454bb4e45b49c5d4b1702cc3,
+        type: 2}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: snowplowsSurvival.Array.data[1]
+      value: 
+      objectReference: {fileID: 1723106119225878, guid: 171b7d620307ec34181a49cc562b7c88,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7306b9b8ac5d565479e3f858f16edd33, type: 2}
   m_IsPrefabParent: 0

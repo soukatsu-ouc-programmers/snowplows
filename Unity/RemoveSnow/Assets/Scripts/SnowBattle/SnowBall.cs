@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Prefab版の雪玉
+/// サバイバルモード専用
+/// </summary>
 public class SnowBall : MonoBehaviour {
 
+	/// <summary>
+	/// 発射速度
+	/// </summary>
 	[SerializeField]
 	private float shootSpeed;
 
@@ -17,16 +24,20 @@ public class SnowBall : MonoBehaviour {
 	/// </summary>
 	public const int PenaltyDamage = 30;
 
-	// Use this for initialization
-	void Start () {
-		this.GetComponent<Rigidbody> ().AddForce (transform.forward * shootSpeed, ForceMode.VelocityChange);
-		StartCoroutine ("destroySnowBall");
-
+	/// <summary>
+	/// 雪玉を発射します。
+	/// </summary>
+	public void Start() {
+		this.GetComponent<Rigidbody>().AddForce(this.transform.forward * this.shootSpeed, ForceMode.VelocityChange);
+		this.StartCoroutine(this.destroySnowBall());
 	}
 
-	IEnumerator destroySnowBall(){
-		yield return new WaitForSeconds (1f);
-		Destroy (this.gameObject);
+	/// <summary>
+	/// コルーチン：発射後一定時間経過したら消します。
+	/// </summary>
+	private IEnumerator destroySnowBall() {
+		yield return new WaitForSeconds(1f);
+		GameObject.Destroy(this.gameObject);
 	}
 
 	/// <summary>

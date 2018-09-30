@@ -27,7 +27,7 @@ public class SnowBattleScene : MonoBehaviour {
 	/// </summary>
 	[SerializeField]
 	private AudioSource[] seGroup;
-	
+
 	/// <summary>
 	/// ゲームが開始したかどうか
 	/// </summary>
@@ -37,20 +37,22 @@ public class SnowBattleScene : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// 除雪車の初期位置
-	/// 0 = 1P
-	/// 1 = 2P
+	/// プレイヤーごとの初期位置と初期状態の向きを定義した空のゲームオブジェクト群
 	/// </summary>
 	[SerializeField]
-	private GameObject[] spawnPoint;
+	private GameObject[] spawnPositions;
 
 	/// <summary>
-	/// 除雪車のプレファブのリスト。
-	/// 0,1 = 通常の除雪車
-	/// 2,3 = ロータリー除雪車
+	/// ブレード型除雪車プレイヤーごとのプレハブ群
 	/// </summary>
 	[SerializeField]
-	private GameObject[] snowplows;
+	private GameObject[] snowplowsNormal;
+
+	/// <summary>
+	/// ロータリー型除雪車プレイヤーごとのプレハブ群
+	/// </summary>
+	[SerializeField]
+	private GameObject[] snowplowsSurvival;
 
 	/// <summary>
 	/// シーン開始と同時にフェードインします。
@@ -60,50 +62,65 @@ public class SnowBattleScene : MonoBehaviour {
 		PlayerScore.Init(SelectModeScene.Players);
 		SnowBattleScene.IsStarted = false;
 
-		//バトルモードによる設定
-		// バトルモードでUI表示、除雪車の種類を切り替える
+		// モードによる設定: バトルモードでUI表示、除雪車の種類を切り替える
 		switch(SelectModeScene.BattleMode) {
-		case SelectModeScene.BattleModes.ShavedIce:
+			case SelectModeScene.BattleModes.ShavedIce:
 				// HPメーターを無効化
-				var meters = GameObject.FindGameObjectsWithTag ("MeterUI");
-				foreach (var meter in meters) {
-					meter.SetActive (false);
+				var meters = GameObject.FindGameObjectsWithTag("MeterUI");
+				foreach(var meter in meters) {
+					meter.SetActive(false);
 				}
-				//通常の除雪車を配置
-				Instantiate (this.snowplows [0], this.spawnPoint [0].transform.position, this.spawnPoint[0].transform.rotation);
-				Instantiate (this.snowplows [1], this.spawnPoint [1].transform.position, this.spawnPoint[1].transform.rotation);
+
+				// 通常の除雪車を配置
+				for(int i = 0; i < SelectModeScene.Players; i++) {
+					GameObject.Instantiate(
+						this.snowplowsNormal[i],
+						this.spawnPositions[i].transform.position,
+						this.spawnPositions[i].transform.rotation
+					);
+				}
 				break;
 
 			case SelectModeScene.BattleModes.SnowFight:
 				// 点数表示を無効化
-				var scores = GameObject.FindGameObjectsWithTag ("ScoreUI");
-				foreach (var score in scores) {
-					score.GetComponent<Text> ().enabled = false;
+				var scores = GameObject.FindGameObjectsWithTag("ScoreUI");
+				foreach(var score in scores) {
+					score.GetComponent<Text>().enabled = false;
 				}
-				//ロータリー除雪車を配置
-				Instantiate (snowplows [2], this.spawnPoint[0].transform.position,this.spawnPoint[0].transform.rotation);
-				Instantiate (snowplows [3], this.spawnPoint[1].transform.position,this.spawnPoint[1].transform.rotation);
+
+				// ロータリー除雪車を配置
+				for(int i = 0; i < SelectModeScene.Players; i++) {
+					GameObject.Instantiate(
+						this.snowplowsSurvival[i],
+						this.spawnPositions[i].transform.position,
+						this.spawnPositions[i].transform.rotation
+					);
+				}
 				break;
 		}
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);
 
-		//人数による設定を行う
-		//1Pのとき、2Pを消し、カメラを切り替える処理。
-		if (SelectModeScene.Players == 1) {
-			Destroy (GameObject.Find ("Snowplow2P"));
-			GameObject.Find ("CameraPlayer1P").SetActive (false);
-			GameObject.Find ("CameraFor1P").SetActive (true);
-			GameObject.Find ("Text Score Player2").SetActive (false);
-			GameObject.Find ("Image player2").SetActive (false);
-		}
+		// 人数による設定
+		switch(SelectModeScene.Players) {
+			case 1:
+				// 2Pの表示を消す
+				if(SelectModeScene.BattleMode == SelectModeScene.BattleModes.ShavedIce) {
+					GameObject.Find("CameraFor1P").SetActive(true);
+				}
+				GameObject.Find("CameraPlayer1P").SetActive(false);
+				GameObject.Find("Text Score Player2").SetActive(false);
+				GameObject.Find("Image player2").SetActive(false);
+				break;
 
-		//2Pのとき、1P用のカメラを消す。
-		if (SelectModeScene.Players == 2) {
-			GameObject.Find ("CameraFor1P").SetActive (false);
+			case 2:
+				// 1Pプレイ専用のカメラを消す
+				if(SelectModeScene.BattleMode == SelectModeScene.BattleModes.ShavedIce) {
+					GameObject.Find("CameraFor1P").SetActive(false);
+				}
+				break;
 		}
-
 	}
 
 	/// <summary>

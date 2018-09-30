@@ -523,8 +523,8 @@ MonoBehaviour:
   effectText:
   - {fileID: 1282902503280682, guid: 1bbaa3be68efaf74ca64a0311b91af2d, type: 2}
   - {fileID: 1735512681266418, guid: ce6faf130dc70104d9a8c15508147f23, type: 2}
-  - {fileID: 1945009508172102, guid: 61a47d083673fbb4cb8d6136c2af973d, type: 2}
   - {fileID: 1911507372700840, guid: 8e3f5c795cac457468fe64998574c70d, type: 2}
+  - {fileID: 1945009508172102, guid: 61a47d083673fbb4cb8d6136c2af973d, type: 2}
   - {fileID: 1203971265034978, guid: 7291988135f66064583c053753711ebd, type: 2}
   inputAxisHorizontal: Horizontal
   inputAxisVertical: Vertical
@@ -541,7 +541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9074034d509356d49bca9f3860a9deaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snowBall: {fileID: 1716119696798388, guid: 4996c34c0fc22a44683815672f1c9e62, type: 2}
   playerIndex: 0
 --- !u!114 &114989605863386948
 MonoBehaviour:

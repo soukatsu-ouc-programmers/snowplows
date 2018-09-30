@@ -25,23 +25,35 @@ public class EffectText : MonoBehaviour {
 	private int colorIndex;
 
 	/// <summary>
+	/// アイテムオブジェクト名から文字色インデックスを紐づけるマップ
+	/// </summary>
+	static private readonly Dictionary<string, int> ItemNameToColorIndexMap = new Dictionary<string, int>() {
+		{ "Turbo", 0 },
+		{ "Cannon", 1 },
+		{ "BigBull", 2 },
+		{ "Puzzle", 3 },
+		{ "Heal", 4 },
+	};
+
+	/// <summary>
+	/// アイテムオブジェクト名から文字色インデックスを返す
+	/// </summary>
+	/// <param name="name">アイテムオブジェクト名</param>
+	/// <returns>対応する文字色インデックス。該当しない場合は-1</returns>
+	static public int GetItemColorIndex(string name) {
+		foreach(var key in EffectText.ItemNameToColorIndexMap.Keys) {
+			if(name.ToLower().IndexOf(key.ToLower()) != -1) {
+				return EffectText.ItemNameToColorIndexMap[key];
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
 	/// 初期化処理
 	/// </summary>
 	public void Start() {
-		switch(this.gameObject.transform.parent.name) {
-			case "Text SpeedUp(Clone)":
-				this.colorIndex = 0;
-				break;
-			case "Text Cannon(Clone)":
-				this.colorIndex = 1;
-				break;
-			case "Text SizeUp(Clone)":
-				this.colorIndex = 2;
-				break;
-			case "Text Puzzle(Clone)":
-				this.colorIndex = 3;
-				break;
-		}
+		this.colorIndex = EffectText.GetItemColorIndex(this.gameObject.transform.parent.name);
 		this.StartCoroutine(this.fadeOut());
 	}
 

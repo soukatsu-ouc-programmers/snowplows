@@ -51,11 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2c01920098a844fba03e42b730a75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 1262693972766240, guid: 9de49a7f03ae4564d8b46bd27158c19d, type: 2}
+  itemsNormal:
   - {fileID: 1597920429357524, guid: e8432fd2074fe7942a74315900a1a6c7, type: 2}
+  - {fileID: 1262693972766240, guid: 9de49a7f03ae4564d8b46bd27158c19d, type: 2}
   - {fileID: 1362888243675944, guid: 016d37085056c5345ae321a291fef469, type: 2}
   - {fileID: 1017526431981630, guid: 23d26a8ae7742374fab46602ed35203e, type: 2}
+  itemsSurvival:
+  - {fileID: 1597920429357524, guid: e8432fd2074fe7942a74315900a1a6c7, type: 2}
+  - {fileID: 1262693972766240, guid: 9de49a7f03ae4564d8b46bd27158c19d, type: 2}
+  - {fileID: 1362888243675944, guid: 016d37085056c5345ae321a291fef469, type: 2}
+  - {fileID: 1678686144173288, guid: 1ed0be878bc6f9045ae506d8cd96efab, type: 2}
   rangeXMin: -20
   rangeXMax: 22
   positionY: 5

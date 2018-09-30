@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33105114528001162}
   - component: {fileID: 135442090380041246}
   - component: {fileID: 23768155244069202}
-  - component: {fileID: 114274576495142056}
   - component: {fileID: 54144079240292094}
+  - component: {fileID: 114832911362050508}
   m_Layer: 0
   m_Name: SnowBall
   m_TagString: Untagged
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114274576495142056
+--- !u!114 &114832911362050508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,10 +108,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1716119696798388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ab4ba7fb2abf84083a550842de4219, type: 3}
+  m_Script: {fileID: 11500000, guid: e45e547fb34d4504abefbb747a1016bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSpeed: 20
+  shootSpeed: 0
+  playerIndex: 0
 --- !u!135 &135442090380041246
 SphereCollider:
   m_ObjectHideFlags: 1

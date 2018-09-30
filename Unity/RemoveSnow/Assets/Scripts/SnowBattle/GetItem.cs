@@ -19,7 +19,8 @@ public class GetItem : MonoBehaviour {
 	/// </summary>
 	/// <param name="other">接したオブジェクト</param>
 	public void OnTriggerEnter(Collider other) {
-		if(other.gameObject.name.IndexOf("BigBull") == -1 && PlayerScore.IsPlayerTag(other.gameObject) == true) {
+		if(other.gameObject.name.IndexOf("BigBull") == -1
+		&& PlayerScore.IsPlayerTag(other.gameObject) == true) {
 			var player = other.gameObject;
 			var parent = player.transform;
 

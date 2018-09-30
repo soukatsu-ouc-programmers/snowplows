@@ -16,6 +16,12 @@ public class ResultScene : MonoBehaviour {
 	private Camera mainCamera;
 
 	/// <summary>
+	/// メインオーディオリスナー
+	/// </summary>
+	[SerializeField]
+	private AudioListener mainAudioListener;
+
+	/// <summary>
 	/// フェーダー
 	/// </summary>
 	[SerializeField]
@@ -34,6 +40,19 @@ public class ResultScene : MonoBehaviour {
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);
+
+		// メインカメラ以外のカメラ（除雪車付属のカメラなど）をすべて無効化する
+		foreach(var camera in GameObject.FindObjectsOfType<Camera>()) {
+			if(camera.Equals(this.mainCamera) == false) {
+				camera.enabled = false;
+			}
+		}
+		// メインカメラのオーディオリスナー以外をすべて無効化する
+		foreach(var audioListener in GameObject.FindObjectsOfType<AudioListener>()) {
+			if(audioListener.Equals(this.mainAudioListener) == false) {
+				audioListener.enabled = false;
+			}
+		}
 
 		if(SelectModeScene.Players == 1) {
 			// 一人用のときはアングルを変更する

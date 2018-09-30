@@ -14,10 +14,15 @@ public abstract class RespawnBase : MonoBehaviour {
 	public const int PenaltyScore = 300;
 
 	/// <summary>
-	/// プレイヤーごとの復帰位置（ワールド座標系）
+	/// 復帰時の高さオフセット
+	/// </summary>
+	public const float RespawnHeightOffset = 3.0f;
+
+	/// <summary>
+	/// プレイヤーごとの初期位置と初期状態の向きを定義した空のゲームオブジェクト群
 	/// </summary>
 	[SerializeField]
-	protected Vector3[] respawnPositions;
+	protected GameObject[] respawnPositions;
 
 	/// <summary>
 	/// プレイヤーごとのペナルティテキストオブジェクト
@@ -41,10 +46,11 @@ public abstract class RespawnBase : MonoBehaviour {
 		GameObject.Find("FallPenalty").GetComponent<AudioSource>().Play();
 
 		// 所定の位置に移動して体勢を立て直す
-		other.gameObject.transform.position = this.respawnPositions[index];
+		other.gameObject.transform.rotation = this.respawnPositions[index].transform.rotation;
+		other.gameObject.transform.position = this.respawnPositions[index].transform.position
+			+ Vector3.up * RespawnBase.RespawnHeightOffset;
 		other.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		other.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-		other.gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
 
 		// 得点ペナルティを与える
 		switch(SelectModeScene.BattleMode) {

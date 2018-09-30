@@ -25,7 +25,7 @@ public class GetCannon : MonoBehaviour {
 
 			// プレイヤーの所定の場所に大砲をくっつける
 			player = other.gameObject;
-			Object.Instantiate (this.playerCannons [playerIndex], player.transform.position, player.transform.rotation, parent);
+			Object.Instantiate(this.playerCannons[playerIndex], player.transform.position, player.transform.rotation, parent);
 			Object.Destroy(this.gameObject);
 		}
 	}
