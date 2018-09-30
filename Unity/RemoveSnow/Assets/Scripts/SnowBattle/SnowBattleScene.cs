@@ -143,9 +143,22 @@ public class SnowBattleScene : MonoBehaviour {
 	private IEnumerator startingSubtitleControllerDescription() {
 		yield return new WaitForEndOfFrame();
 
-		// iTweenによるアニメーション表示
 		this.subtitles[0].SetActive(true);
+
+		// プレイヤー人数に応じてキーボードの表示を切り替える
+		switch(SelectModeScene.Players) {
+			case 1:
+				this.subtitles[0].transform.Find("Keyboard2P").gameObject.SetActive(false);
+				break;
+
+			case 2:
+				this.subtitles[0].transform.Find("Keyboard1P").gameObject.SetActive(false);
+				break;
+		}
+
 		this.subtitles[0].transform.localScale = Vector3.zero;
+
+		// iTweenによるアニメーション表示
 		iTween.ScaleTo(
 			this.subtitles[0],
 			iTween.Hash(

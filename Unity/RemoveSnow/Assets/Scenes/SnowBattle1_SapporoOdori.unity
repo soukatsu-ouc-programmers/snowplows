@@ -3668,7 +3668,7 @@ MeshFilter:
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!82 &129450875 stripped
 AudioSource:
-  m_PrefabParentObject: {fileID: 82013490643793898, guid: e5cd3767b93a7834bb160003199a831d,
+  m_PrefabParentObject: {fileID: 82529895563823916, guid: e5cd3767b93a7834bb160003199a831d,
     type: 2}
   m_PrefabInternal: {fileID: 164220725}
 --- !u!1 &131168302
@@ -18814,9 +18814,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    - target: {fileID: 114169718812565986, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
         type: 2}
-      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: ZeroTimerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 148409347}
     - target: {fileID: 114773918216641666, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
@@ -18824,9 +18824,9 @@ Prefab:
       propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 148409347}
-    - target: {fileID: 114169718812565986, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
+    - target: {fileID: 114847016337114422, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
         type: 2}
-      propertyPath: ZeroTimerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: ZeroHPEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 148409347}
     - target: {fileID: 224371301657991178, guid: 84d2bc6af857ffc4bbcd9ac0819b6d8f,
@@ -26862,6 +26862,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 850392791}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &851828995 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82013490643793898, guid: e5cd3767b93a7834bb160003199a831d,
+    type: 2}
+  m_PrefabInternal: {fileID: 164220725}
 --- !u!1 &852324814
 GameObject:
   m_ObjectHideFlags: 0
@@ -42303,6 +42308,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
         type: 2}
+      propertyPath: seGroup.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
       propertyPath: spawnPoint.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -42457,6 +42467,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1723106119225878, guid: 171b7d620307ec34181a49cc562b7c88,
         type: 2}
+    - target: {fileID: 114195828675241376, guid: 7306b9b8ac5d565479e3f858f16edd33,
+        type: 2}
+      propertyPath: seGroup.Array.data[7]
+      value: 
+      objectReference: {fileID: 851828995}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7306b9b8ac5d565479e3f858f16edd33, type: 2}
   m_IsPrefabParent: 0

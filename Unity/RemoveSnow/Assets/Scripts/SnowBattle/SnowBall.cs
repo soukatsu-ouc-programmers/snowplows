@@ -55,7 +55,7 @@ public class SnowBall : MonoBehaviour {
 		}
 
 		// 衝突SEの再生
-		GameObject.Find("BulletPenalty").GetComponent<AudioSource>().Play();
+		GameObject.Find("SnowBallPenalty").GetComponent<AudioSource>().Play();
 
 		if(SelectModeScene.BattleMode == SelectModeScene.BattleModes.SnowFight) {
 			// サバイバルモード時：ダメージを与える

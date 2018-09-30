@@ -22,6 +22,18 @@ public class ResultScene : MonoBehaviour {
 	private AudioListener mainAudioListener;
 
 	/// <summary>
+	/// ノーマルモードの除雪車（プレイヤーごと）
+	/// </summary>
+	[SerializeField]
+	private GameObject[] snowplowsNormal;
+
+	/// <summary>
+	/// サバイバルモードの除雪車（プレイヤーごと）
+	/// </summary>
+	[SerializeField]
+	private GameObject[] snowplowsSurvival;
+
+	/// <summary>
 	/// フェーダー
 	/// </summary>
 	[SerializeField]
@@ -40,6 +52,21 @@ public class ResultScene : MonoBehaviour {
 
 		// ビルド後は開始直後にフェーダーを使うとNullReferenceExceptionが出るため、遅延呼び出しする
 		this.Invoke("fadeIn", 0.5f);
+
+		// モードに応じて車種を切り替える
+		GameObject[] snowplows = new GameObject[0];
+		switch(SelectModeScene.BattleMode) {
+			case SelectModeScene.BattleModes.ShavedIce:
+				snowplows = this.snowplowsNormal;
+				break;
+
+			case SelectModeScene.BattleModes.SnowFight:
+				snowplows = this.snowplowsSurvival;
+				break;
+		}
+		foreach(var snowplow in snowplows) {
+			snowplow.SetActive(true);
+		}
 
 		// メインカメラ以外のカメラ（除雪車付属のカメラなど）をすべて無効化する
 		foreach(var camera in GameObject.FindObjectsOfType<Camera>()) {

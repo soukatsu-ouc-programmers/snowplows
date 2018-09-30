@@ -258,32 +258,28 @@ public class SelectModeScene : MonoBehaviour {
 		}
 
 		// 現在有効な設定項目を変更
-		var inputVertical = Input.GetAxisRaw("Vertical");
-		if(Input.GetKeyDown(KeyCode.LeftArrow) == true
-		|| inputVertical > 0) {
+		// var inputVertical = Input.GetAxisRaw("Vertical");
+		if(Input.GetKeyDown(KeyCode.LeftArrow) == true) {
 			if(this.dropdowns[this.settingIndex].value > 0) {
 				this.dropdowns[this.settingIndex].value--;
 			}
 		}
-		if(Input.GetKeyDown(KeyCode.RightArrow) == true
-		|| inputVertical < 0) {
+		if(Input.GetKeyDown(KeyCode.RightArrow) == true) {
 			if(this.dropdowns[this.settingIndex].value < this.dropdowns[this.settingIndex].options.Count - 1) {
 				this.dropdowns[this.settingIndex].value++;
 			}
 		}
 
 		// 選択項目の切り替え
-		var inputHorizontal = Input.GetAxisRaw("Horizontal");
-		if(Input.GetKeyDown(KeyCode.DownArrow) == true
-		|| inputHorizontal > 0) {
+		// var inputHorizontal = Input.GetAxisRaw("Horizontal");
+		if(Input.GetKeyDown(KeyCode.DownArrow) == true) {
 			if(this.settingIndex + 1 < this.dropdowns.Length) {
 				// 次の選択項目へ
 				this.settingIndex++;
 				GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
 			}
 		}
-		if(Input.GetKeyDown(KeyCode.UpArrow) == true
-		|| inputHorizontal < 0) {
+		if(Input.GetKeyDown(KeyCode.UpArrow) == true) {
 			if(this.settingIndex - 1 >= 0) {
 				// 前の設定項目へ
 				this.settingIndex--;

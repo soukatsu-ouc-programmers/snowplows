@@ -19,6 +19,21 @@ public class SnowCollision : MonoBehaviour {
 	public int playerIndex;
 
 	/// <summary>
+	/// 衝突SE
+	/// </summary>
+	private AudioSource snowballPenaltySE;
+
+	/// <summary>
+	/// 初期処理
+	/// </summary>
+	public void Start() {
+		var seObject = GameObject.Find("SnowBallPenalty");
+		if(seObject != null) {
+			this.snowballPenaltySE = GameObject.Find("SnowBallPenalty").GetComponent<AudioSource>();
+		}
+	}
+
+	/// <summary>
 	/// プレイヤーに雪玉が当たったときの処理
 	/// </summary>
 	/// <param name="other">接触したオブジェクト</param>
@@ -31,6 +46,9 @@ public class SnowCollision : MonoBehaviour {
 			// 発射した本人への衝突は無効
 			return;
 		}
+
+		// 衝突SEの再生
+		this.snowballPenaltySE.Play();
 
 		// ダメージを与える
 		PlayerScore.HPs[playerIndex] -= SnowCollision.SnowDamege;
