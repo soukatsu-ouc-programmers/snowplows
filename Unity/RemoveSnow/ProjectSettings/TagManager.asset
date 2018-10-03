@@ -18,6 +18,7 @@ TagManager:
   - MeterUI
   - ScoreUI
   - Heal
+  - Minion
   layers:
   - Default
   - TransparentFX
