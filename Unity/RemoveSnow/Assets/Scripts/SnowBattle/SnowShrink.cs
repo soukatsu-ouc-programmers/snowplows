@@ -20,7 +20,7 @@ public class SnowShrink : MonoBehaviour {
 	/// <summary>
 	/// 縮んだ後のサイズ
 	/// </summary>
-	private float shrinkExtend = 0.7f;
+	public float ShrinkExtend = 0.7f;
 
 	/// <summary>
 	/// 雪が小さくなるのが無限ループしないようにするためのフラグ
@@ -47,8 +47,8 @@ public class SnowShrink : MonoBehaviour {
 
 			if(this.isShrink == true && canAddScore == true) {
 				// 雪を縮める
-				this.gameObject.transform.localScale = new Vector3(1f, this.shrinkExtend, 1f);
-				this.shrinkExtend -= SnowShrink.OnceShrink;
+				this.gameObject.transform.localScale = new Vector3(1f, this.ShrinkExtend, 1f);
+				this.ShrinkExtend -= SnowShrink.OnceShrink;
 
 				// 除雪したプレイヤーのスコアを加算
 				int playerIndex = PlayerScore.PlayerIndexMap[other.gameObject.tag];
@@ -74,7 +74,7 @@ public class SnowShrink : MonoBehaviour {
 	/// 雪の高さが閾値を下回ったら完全に除雪します。
 	/// </summary>
 	public void Update() {
-		if(this.shrinkExtend <= SnowShrink.RemoveCompleteThreshold) {
+		if(this.ShrinkExtend <= SnowShrink.RemoveCompleteThreshold) {
 			Object.Destroy(this.gameObject);
 		}
 	}

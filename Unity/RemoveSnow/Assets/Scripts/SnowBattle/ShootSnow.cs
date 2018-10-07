@@ -9,12 +9,6 @@ using UnityEngine;
 public class ShootSnow : MonoBehaviour {
 
 	/// <summary>
-	/// 雪玉
-	/// </summary>
-	// [SerializeField]
-	// private GameObject snowBall;
-
-	/// <summary>
 	/// 雪玉を発射するプレイヤー
 	/// </summary>
 	[SerializeField]
@@ -47,13 +41,7 @@ public class ShootSnow : MonoBehaviour {
 			return;
 		}
 
-		// 雪玉（Prefabバージョン）
-		// var parent = this.muzzle.transform;
-		// Object.Instantiate(this.snowBall, this.muzzle.transform.position, this.muzzle.transform.rotation, parent);
-		// this.snowBall.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
-		// PlayerScore.Scores[this.playerIndex]--;
-
-		// 雪玉（Particleバージョン）
+		// 雪玉発射
 		this.snowParticles.Emit(1);
 
 		// 発射するたびにスコアをゼロ方向に戻していく
