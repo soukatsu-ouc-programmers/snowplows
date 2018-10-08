@@ -113,6 +113,7 @@ MonoBehaviour:
   - {r: 0, g: 0.5034485, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.93103504, a: 1}
   - {r: 0, g: 1, b: 0.13103461, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114787171234397398
 MonoBehaviour:
   m_ObjectHideFlags: 1

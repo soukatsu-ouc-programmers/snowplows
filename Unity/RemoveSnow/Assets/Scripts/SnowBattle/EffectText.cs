@@ -33,6 +33,7 @@ public class EffectText : MonoBehaviour {
 		{ "BigBull", 2 },
 		{ "Puzzle", 3 },
 		{ "Heal", 4 },
+		{ "Minion", 5 },
 	};
 
 	/// <summary>

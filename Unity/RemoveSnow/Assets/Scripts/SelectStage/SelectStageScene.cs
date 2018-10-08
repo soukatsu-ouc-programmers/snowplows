@@ -178,7 +178,7 @@ public class SelectStageScene : MonoBehaviour {
 		}
 
 		GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
-		this.StartCoroutine(changeStageRight());
+		this.StartCoroutine(this.changeStageRight());
 	}
 
 	/// <summary>
@@ -236,7 +236,7 @@ public class SelectStageScene : MonoBehaviour {
 		}
 
 		GameObject.Find("SelectSE").GetComponent<AudioSource>().Play();
-		this.StartCoroutine(changeStageLeft());
+		this.StartCoroutine(this.changeStageLeft());
 	}
 
 	/// <summary>

@@ -269,7 +269,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1776948580151854}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -318,7 +318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minionSpeed: 5
-  playerIndex: 0
 --- !u!135 &135840303143597834
 SphereCollider:
   m_ObjectHideFlags: 1

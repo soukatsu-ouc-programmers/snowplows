@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: PUZZLED
+  m_Text: PUZZLED...
 --- !u!114 &114379407298307594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,6 +97,7 @@ MonoBehaviour:
   - {r: 0, g: 0.5034485, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.93103504, a: 1}
   - {r: 0, g: 1, b: 0.13103461, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114576110883485322
 MonoBehaviour:
   m_ObjectHideFlags: 1

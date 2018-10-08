@@ -281,5 +281,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84892df27e29c6d42a6e423fc3b0a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: {fileID: 1300760130618360, guid: 7bbe0649a7d782b49ae04d10e2917ef4, type: 2}
-  itemSound: {fileID: 8300000, guid: bbe86e7e3c8408647968766767e91798, type: 3}
+  item: {fileID: 1300760130618360, guid: 7bbe0649a7d782b49ae04d10e2917ef4, type: 2}

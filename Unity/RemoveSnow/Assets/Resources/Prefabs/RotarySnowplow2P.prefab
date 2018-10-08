@@ -573,6 +573,7 @@ MonoBehaviour:
   - {fileID: 1911507372700840, guid: 8e3f5c795cac457468fe64998574c70d, type: 2}
   - {fileID: 1945009508172102, guid: 61a47d083673fbb4cb8d6136c2af973d, type: 2}
   - {fileID: 1203971265034978, guid: 7291988135f66064583c053753711ebd, type: 2}
+  - {fileID: 1728395748620434, guid: e55937338bfbe524788b8cfb755f589f, type: 2}
   inputAxisHorizontal: Horizontal2
   inputAxisVertical: Vertical2
   keyCodeRestoreFromRollover: 303

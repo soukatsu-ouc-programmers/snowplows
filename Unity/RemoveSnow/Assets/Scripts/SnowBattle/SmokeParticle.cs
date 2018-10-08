@@ -2,37 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 除雪車から煙を出す演出
+/// </summary>
 public class SmokeParticle : MonoBehaviour {
 
 	/// <summary>
-	/// このパーティクルがついているPlayer
+	/// このパーティクルがついているプレイヤーのインデックス
 	/// </summary>
 	private int playerIndex;
 
 	/// <summary>
-	/// 瀕死とするHP
+	/// 瀕死とするHP割合
 	/// </summary>
-	private int dying = 200;
+	public const float dyingRate = 0.2f;
 
 	/// <summary>
 	/// Smokeパーティクル
 	/// </summary>
 	private ParticleSystem smoke;
 
-	// Use this for initialization
-	void Start () {
-		playerIndex = PlayerScore.PlayerIndexMap [this.transform.parent.gameObject.tag];
-		smoke = this.GetComponent<ParticleSystem> ();
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	public void Start() {
+		this.playerIndex = PlayerScore.PlayerIndexMap[this.transform.parent.gameObject.tag];
+		this.smoke = this.GetComponent<ParticleSystem>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (PlayerScore.HPs [playerIndex] <= dying) {
 
-			if (smoke.isPlaying == false) {
-				smoke.Play ();
+	/// <summary>
+	/// このプレイヤーが瀕死になったら煙を出します。
+	/// 逆に、瀕死状態から回復したら煙を消します。
+	/// </summary>
+	public void Update() {
+		if(PlayerScore.HPs[this.playerIndex] <= PlayerScore.MaxHP * SmokeParticle.dyingRate) {
+			if(this.smoke.isPlaying == false) {
+				this.smoke.Play();
 			}
-
+		} else {
+			if(this.smoke.isPlaying == true) {
+				this.smoke.Stop();
+			}
 		}
 	}
+
 }
