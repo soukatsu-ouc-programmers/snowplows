@@ -71,6 +71,7 @@ public class WinnerDisplay : MonoBehaviour {
 
 		if(winnerPlayers.Count == 1) {
 			// 勝者が一人
+			PlayerScore.HPs[winnerPlayers[0]] = PlayerScore.MaxHP;
 			var playerNumber = winnerPlayers[0] + 1;
 			this.GetComponent<Text>().text = "Player " + playerNumber + "\r\nWin !";
 			this.GetComponent<Text>().color = PlayerScore.PlayerColors[winnerPlayers[0]];
@@ -89,6 +90,8 @@ public class WinnerDisplay : MonoBehaviour {
 
 			// トップでないかき氷を非表示にする
 			for(int i = 0; i < shavedIcesTransform.childCount; i++) {
+				PlayerScore.HPs[i] = PlayerScore.MaxHP;
+
 				if(i >= PlayerScore.Scores.Length) {
 					break;
 				}
