@@ -23,7 +23,7 @@ public class ItemSpawn : MonoBehaviour {
 	/// <summary>
 	/// 次の配置をするまでの秒数（通常モード）
 	/// </summary>
-	public const float NextDelayTimeSecondsNormal = 10.0f;
+	public const float NextDelayTimeSecondsNormal = 5.0f;
 
 	/// <summary>
 	/// 次の配置をするまでの秒数（カオスモード）

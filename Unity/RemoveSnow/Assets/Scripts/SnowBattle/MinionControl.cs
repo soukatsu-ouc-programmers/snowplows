@@ -39,12 +39,13 @@ public class MinionControl : MonoBehaviour {
 	/// <summary>
 	/// 持続時間秒
 	/// </summary>
+	//public const float LiveTimeSeconds = 60.0f;
 	public const float LiveTimeSeconds = 15.0f;
 
 	/// <summary>
 	/// 除雪モードのみ: SnowBlockを探す半径
 	/// </summary>
-	public const float SearchRadias = 0.03f;
+	public const float SearchRadias = 5.0f;
 
 	/// <summary>
 	/// 除雪モードのみ: このミニオンが雪を削ったときに得られるスコア
@@ -129,19 +130,22 @@ public class MinionControl : MonoBehaviour {
 					this.searchSnowBlock();
 
 					if(this.targetSnow == null) {
-						if(this.isJumping == false) {
-							// 近くに雪がなかった場合は前方に向かってジャンプする
-							this.StartCoroutine(this.jump());
-						}
+						// 近くに雪がなかった場合は前方に向かってジャンプする
+						this.StartCoroutine(this.jump());
 						return;
 					}
+				}
+
+				if(this.GetComponent<Rigidbody>().IsSleeping() == true) {
+					// 膠着状態に陥ったときはジャンプして空中前進する
+					this.StartCoroutine(this.jump(true));
 				}
 
 				// ターゲットの方向を向き、進む
 				var targetSnowRotation = Quaternion.LookRotation(this.gameObject.transform.position - this.targetSnow.transform.position);
 				this.transform.rotation = Quaternion.Slerp(this.transform.rotation, targetSnowRotation, Time.deltaTime * 3);
-				//this.transform.Translate(Vector3.forward * -1 * this.minionSpeed * Time.deltaTime);
-				this.GetComponent<Rigidbody>().AddForce(Vector3.forward * -1 * this.minionSpeed * Time.deltaTime);
+				this.transform.Translate(Vector3.forward * -1 * this.minionSpeed * Time.deltaTime);
+				//this.GetComponent<Rigidbody>().AddForce(Vector3.forward * -1 * this.minionSpeed * Time.deltaTime);
 				break;
 
 			case SelectModeScene.BattleModes.SnowFight:
@@ -203,7 +207,8 @@ public class MinionControl : MonoBehaviour {
 				}
 
 				// 衝突SEの再生
-				GameObject.Find("BulletPenalty").GetComponent<AudioSource>().Play();
+				GameObject.Find("SnowBallPenalty").GetComponent<AudioSource>().Play();
+				// GameObject.Find("BulletPenalty").GetComponent<AudioSource>().Play();
 
 				// ダメージを与える
 				PlayerScore.HPs[playerIndex] -= this.minionDamege;
@@ -252,14 +257,20 @@ public class MinionControl : MonoBehaviour {
 	/// <summary>
 	/// コルーチン：即座にジャンプします。
 	/// </summary>
-	private IEnumerator jump() {
+	/// <param name="isNotDuplicate">重複したジャンプを許可するかどうか</param>
+	private IEnumerator jump(bool isNotDuplicate = false) {
 		yield return new WaitForEndOfFrame();
+
+		if(this.isJumping == true && isNotDuplicate == false) {
+			yield break;
+		}
+
 		this.isJumping = true;
 
 		this.GetComponent<Rigidbody>().AddForce(Vector3.up * MinionControl.JumpPower, ForceMode.VelocityChange);
 		this.GetComponent<Rigidbody>().AddForce(Vector3.forward * MinionControl.JumpPower, ForceMode.VelocityChange);
 
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(1.0f);
 
 		this.isJumping = false;
 	}

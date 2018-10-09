@@ -276,7 +276,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65096599800803104
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee944e2a04e7f6b48bcd2f3036d42d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionSpeed: 5
+  minionSpeed: 3
 --- !u!135 &135840303143597834
 SphereCollider:
   m_ObjectHideFlags: 1
